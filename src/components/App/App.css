@@ -1,0 +1,19 @@
+.page {
+  background-color: #fff;
+  max-width: 425px;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+  font-family: 'Arial Black', Helvetica, sans-serif;
+  box-sizing: border-box;
+}
+
+.page__list  {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.page__link {
+  text-decoration: none;
+}

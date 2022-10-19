@@ -1,0 +1,20 @@
+.start-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.start-screen__title {
+  margin: 0;
+  font-size: 20px;
+}
+
+.start-screen__link {
+  color: #000;
+  border: 2px solid #000;
+  border-radius: 99em;
+  padding: 5px 15px;
+}
