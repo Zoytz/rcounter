@@ -11,3 +11,19 @@
 /* page404 */
 
 @import url(../src/components/Page404/Page404.css);
+
+/* Form */
+
+@import url(../src/components/Form/Form.css);
+
+/* ServicesForm */
+
+@import url(../src/components/ServicesForm/ServicesForm.css);
+
+/* FormInput */
+
+@import url(../src/components/FormInput/FormInput.css);
+
+/* FormButton */
+
+@import url(../src/components/FormButton/FormButton.css);

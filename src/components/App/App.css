@@ -6,6 +6,7 @@
   margin: 0 auto;
   font-family: 'Arial Black', Helvetica, sans-serif;
   box-sizing: border-box;
+  padding: 10px;
 }
 
 .page__list  {
@@ -16,4 +17,13 @@
 
 .page__link {
   text-decoration: none;
+}
+
+.page__form {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
