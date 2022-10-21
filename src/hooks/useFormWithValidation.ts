@@ -7,9 +7,9 @@ type useFormWithValidationTypes = {
   errors: Record<string, string>
   isFormValid: boolean
   resetForm: (
-    newValues: Record<string, string>, 
-    newErrors: Record<string, string>, 
-    newIsFormValid: boolean) => void
+    newValues?: Record<string, string>, 
+    newErrors?: Record<string, string>, 
+    newIsFormValid?: boolean) => void
 }
 
 export function useFormWithValidation ():useFormWithValidationTypes {
@@ -27,7 +27,10 @@ export function useFormWithValidation ():useFormWithValidationTypes {
     setIsFormValid(input.closest('form').checkValidity());
   }
 
-  const resetForm = useCallback((newValues = {}, newErrors = {}, newIsFormValid = (false)) => {
+  const resetForm = useCallback((
+    newValues = {}, 
+    newErrors = {}, 
+    newIsFormValid = (false)) => {
     setValues(newValues);
     setErrors(newErrors);
     setIsFormValid(newIsFormValid);
