@@ -1,0 +1,26 @@
+.services {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.service {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+}
+
+.service__title {
+  font-size: 12px;
+  margin: 0;
+}
+
+.service__button {
+  border: 2px solid #000;
+  border-radius: 99em;
+  background-color: #fff;
+  font-size: 12px;
+
+}

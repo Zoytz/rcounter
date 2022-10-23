@@ -7,3 +7,7 @@
   font-size: 14px;
   border-radius: 5px;
 }
+
+.form-button_type_disabled {
+  background-color: grey;
+}

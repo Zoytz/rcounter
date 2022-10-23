@@ -27,3 +27,8 @@
 /* FormButton */
 
 @import url(../src/components/FormButton/FormButton.css);
+
+/* ServicesList */
+
+@import url(../src/components/ServicesList/ServicesList.css);
+
