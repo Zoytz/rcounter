@@ -1,0 +1,43 @@
+.order {
+  border: 2px solid #000;
+  border-radius: 10px;
+  padding: 8px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.order__title {
+  margin: 0;
+  font-size: 15px;
+  text-align: center;
+}
+
+.order__subtitle {
+  margin: 0;
+  font-size: 13px;
+  color: grey;
+}
+
+.order__buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.order__button {
+  text-align: center;
+  border: none;
+  background-color: #000;
+  color: #fff;
+  font-size: 13px;
+  border-radius: 5px;
+  width: 45%;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}

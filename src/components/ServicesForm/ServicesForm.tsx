@@ -1,35 +1,44 @@
-import { ChangeEvent, FC }  from 'react';
+import React, { ChangeEvent, FC } from 'react';
 import Form from '../Form/Form';
 import FormInput from '../FormInput/FormInput';
 import FormButton from '../FormButton/FormButton';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
+import { Link, useNavigate } from 'react-router-dom';
+
+export type ServiceType = {
+  name: string | null
+  price: number | null
+}
 
 type PropsType = {
-  handleServicesFormSubmit: ( params: Record<string, number> ) => void
+  handleServicesFormSubmit: (params: ServiceType) => void
 }
 
 const ServicesForm: FC<PropsType> = ({ handleServicesFormSubmit }) => {
 
-  const { values, handleChange, errors, isFormValid, resetForm } = useFormWithValidation();
+  const navigate = useNavigate();
 
-  type ServiceObjType = Record< string, number >
+  const { values, handleChange, errors, isFormValid, resetForm } = useFormWithValidation();
 
   const handleSubmit = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    const serviceObj:ServiceObjType = {};
+    const serviceObj: ServiceType = { name: null, price: null };
     const name: string = values.serviceName;
     const price: number = Number(values.servicePrice);
-    serviceObj[name] = price;
+    serviceObj.name = name;
+    serviceObj.price = price;
     handleServicesFormSubmit(serviceObj);
     resetForm();
+    navigate('/services');
   }
 
   return (
     <Form handleSubmit={handleSubmit} formName='services' formTitle='Введите название услуги и цену:'>
-      <FormInput onChange={handleChange} value={values.serviceName} name='serviceName' type="text" label='Название услуги:' error={errors.serviceName} />
-      <FormInput onChange={handleChange} value={values.servicePrice} name='servicePrice' type="number" label='Стоимость услуги за ед.:' error={errors.servicePrice} />
+      <FormInput required={true} onChange={handleChange} value={values.serviceName} name='serviceName' type="text" label='Название услуги:' error={errors.serviceName} />
+      <FormInput required={true} onChange={handleChange} value={values.servicePrice} name='servicePrice' type="number" label='Стоимость услуги за ед.:' error={errors.servicePrice} />
       <FormButton isFormValid={isFormValid} name='services-button' buttonText='Сохранить услугу' />
-    </Form> 
+      <Link to='/services' className='services__link page__link'>К списку услуг</Link>
+    </Form>
   )
 }
 

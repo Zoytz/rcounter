@@ -1,3 +1,11 @@
-.form_type_services {
-  
+.services__link {
+  display: block;
+  text-align: center;
+  color: #000;
+  padding: 8px 20px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  width: 65%;
+  font-size: 14px;
+  box-sizing: border-box;
 }

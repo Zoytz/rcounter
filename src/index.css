@@ -32,3 +32,18 @@
 
 @import url(../src/components/ServicesList/ServicesList.css);
 
+/* ServiceCard */
+
+@import url(../src/components/ServiceCard/ServiceCard.css);
+
+/* OrdersForm */
+
+@import url(../src/components/OrdersForm/OrdersForm.css);
+
+/* OrdersList */
+
+@import url(../src/components/OrdersList/OrdersList.css);
+
+/* OrderCard */
+
+@import url(../src/components/OrderCard/OrderCard.css);

@@ -1,23 +1,27 @@
 import React, { FC, ReactNode, ChangeEvent } from 'react';
+import { Link } from 'react-router-dom';
+import ServiceCard from '../ServiceCard/ServiceCard';
+import { ServiceType } from '../ServicesForm/ServicesForm';
 
+type PropsType = {
+  services: Array<ServiceType>
+  handleDeleteService: (param: ServiceType) => void
+}
 
-
-const ServicesList: FC<any> = ({services}) => {
+const ServicesList: FC<PropsType> = ({ services, handleDeleteService }) => {
   return (
-    <ul className='services page__list'>
-      {
-        services.map((service:Record<string, number>) => {
-          let serviceKey = Object.keys(service);
-          return (
-            <li key={serviceKey[0]} className="service">
-              <h2 className="service__title">{serviceKey[0]}: {service[serviceKey[0]]} руб./кв.м.</h2>
-              <button className="service__button">Удалить</button>
-            </li>
-          )
-        })
-      }
-
-    </ul>
+    <>
+      <ul className='services page__list'>
+        {
+          services.map((service: ServiceType) => {
+            return (
+              <ServiceCard handleDeleteService={handleDeleteService} service={service} />
+            )
+          })
+        }
+      </ul>
+      <Link to='/add-services' className="services__button page__link">+</Link>
+    </>
   )
 }
 

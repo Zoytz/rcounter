@@ -8,8 +8,8 @@ function StartScreen() {
       <Link to="#" className="start-screen__link page__link">
         Создать заказ
       </Link>
-      <Link to="/add-services" className="start-screen__link page__link">
-        Внести список услуг
+      <Link to="/services" className="start-screen__link page__link">
+        Cписок услуг
       </Link>
     </div>
   )
