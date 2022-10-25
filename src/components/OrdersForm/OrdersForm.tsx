@@ -27,6 +27,7 @@ const OrdersForm: FC<PropsType> = ({ handleOrdersFormSubmit }) => {
 
   const handleSubmit = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
+    const date = Date.now();
     const orderObj: OrderType = {};
     orderObj.city = values.city;
     orderObj.street = values.street;
@@ -34,7 +35,7 @@ const OrdersForm: FC<PropsType> = ({ handleOrdersFormSubmit }) => {
     orderObj.apartmentNumber = Number(values.apartmentNumber);
     orderObj.customer = values.customer;
     orderObj.customerTel = Number(values.customerTel);
-    orderObj.id = Number(`${Date}${values.customerTel}`);
+    orderObj.id = date;
     handleOrdersFormSubmit(orderObj);
     resetForm();
     navigate('/');

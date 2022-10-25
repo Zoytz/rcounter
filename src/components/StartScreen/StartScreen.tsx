@@ -5,7 +5,7 @@ function StartScreen() {
   return (
     <div className='start-screen'>
       <h1 className='start-screen__title'>У Вас еще нет заказов</h1>
-      <Link to="#" className="start-screen__link page__link">
+      <Link to="/add-orders" className="start-screen__link page__link">
         Создать заказ
       </Link>
       <Link to="/services" className="start-screen__link page__link">

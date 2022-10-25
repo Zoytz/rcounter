@@ -15,7 +15,7 @@ const OrdersList: FC<PropsType> = ({ orders, handleDeleteOrder }) => {
         {
           orders.map((order: OrderType) => {
             return (
-              <OrderCard handleDeleteOrder={handleDeleteOrder} order={order} />
+              <OrderCard key={order.id} handleDeleteOrder={handleDeleteOrder} order={order} />
             )
           })
         }

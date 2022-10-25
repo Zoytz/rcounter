@@ -11,14 +11,8 @@ function App() {
 
   const [services, setServices] = React.useState<Array<ServiceType>>([]);
   const [orders, setOrders] = React.useState<Array<OrderType>>([]);
-  
+
   React.useEffect(() => {
-    if (!localStorage.getItem('orders')) {
-      return
-    } else {
-      const ordersFromLS: any = JSON.parse(localStorage.getItem('orders')!);
-      setOrders(ordersFromLS.reverse());
-    }
     if (!localStorage.getItem('services')) {
       return
     } else {
@@ -27,16 +21,26 @@ function App() {
     }
   }, []);
 
+  React.useEffect(() => {
+    if (!localStorage.getItem('orders')) {
+      return
+    } else {
+      console.log('tut chto li?')
+      const ordersFromLS: any = JSON.parse(localStorage.getItem('orders')!);
+      setOrders(ordersFromLS.reverse());
+    }
+  }, []);
+
   const handleServicesFormSubmit = (service: ServiceType): void => {
     const servicesArr: Array<ServiceType> = services;
-    servicesArr.push(service);
+    servicesArr.reverse().push(service);
     setServices(servicesArr);
     localStorage.setItem('services', JSON.stringify(servicesArr));
   }
 
   const handleOrdersFormSubmit = (order: OrderType): void => {
     const ordersArr: Array<OrderType> = orders;
-    ordersArr.push(order);
+    ordersArr.reverse().push(order);
     setOrders(ordersArr);
     localStorage.setItem('orders', JSON.stringify(ordersArr));
   }
@@ -50,27 +54,26 @@ function App() {
 
   const handleDeleteOrder = (delitedOrder: OrderType): void => {
     const ordersArr: Array<OrderType> = orders;
-    const newOrdersArr: Array<OrderType> = ordersArr.filter(order => (order.street !== delitedOrder.street) && (order.customerTel !== delitedOrder.customerTel));
+    const newOrdersArr: Array<OrderType> = ordersArr.filter(order => order.id !== delitedOrder.id);
     setOrders(newOrdersArr);
-    localStorage.setItem('services', JSON.stringify(newOrdersArr));
+    localStorage.setItem('orders', JSON.stringify(newOrdersArr));
   }
 
   return (
     <div className='page'>
       <Routes>
-        <Route path='/' element={localStorage.getItem('orders') ? <OrdersList handleDeleteOrder={handleDeleteOrder} orders={orders} />:<StartScreen />} />
+        <Route path='/' element={localStorage.getItem('orders') ? <OrdersList handleDeleteOrder={handleDeleteOrder} orders={orders} /> : <StartScreen />} />
         <Route path="/add-services" element={
           <ServicesForm
             handleServicesFormSubmit={handleServicesFormSubmit}
           />}
         />
         <Route path="/add-orders" element={
-          <OrdersForm handleOrdersFormSubmit={handleOrdersFormSubmit}/>}
+          <OrdersForm handleOrdersFormSubmit={handleOrdersFormSubmit} />}
         />
         <Route path="*" element={<Page404 />} />
         <Route path='/services' element={<ServicesList handleDeleteService={handleDeleteService} services={services} />} />
       </Routes>
-
     </div>
   )
 }
