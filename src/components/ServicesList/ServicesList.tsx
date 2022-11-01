@@ -15,7 +15,7 @@ const ServicesList: FC<PropsType> = ({ services, handleDeleteService }) => {
         {
           services.map((service: ServiceType) => {
             return (
-              <ServiceCard handleDeleteService={handleDeleteService} service={service} />
+              <ServiceCard key={`${service.name}${service.price}`} handleDeleteService={handleDeleteService} service={service} />
             )
           })
         }

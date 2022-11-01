@@ -8,6 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 export type ServiceType = {
   name: string | null
   price: number | null
+  dependence: string | null
 }
 
 type PropsType = {
@@ -20,13 +21,15 @@ const ServicesForm: FC<PropsType> = ({ handleServicesFormSubmit }) => {
 
   const { values, handleChange, errors, isFormValid, resetForm } = useFormWithValidation();
 
-  const handleSubmit = (e: ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const serviceObj: ServiceType = { name: null, price: null };
+  const handleSubmit = (event: ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
+    const serviceObj: ServiceType = { name: null, price: null, dependence: null };
     const name: string = values.serviceName;
     const price: number = Number(values.servicePrice);
+    const dependence: string = values.name;
     serviceObj.name = name;
     serviceObj.price = price;
+    serviceObj.dependence = dependence;
     handleServicesFormSubmit(serviceObj);
     resetForm();
     navigate('/services');
@@ -36,6 +39,17 @@ const ServicesForm: FC<PropsType> = ({ handleServicesFormSubmit }) => {
     <Form handleSubmit={handleSubmit} formName='services' formTitle='Введите название услуги и цену:'>
       <FormInput required={true} onChange={handleChange} value={values.serviceName} name='serviceName' type="text" label='Название услуги:' error={errors.serviceName} />
       <FormInput required={true} onChange={handleChange} value={values.servicePrice} name='servicePrice' type="number" label='Стоимость услуги за ед.:' error={errors.servicePrice} />
+      <label className='services__label'>
+          Расчет из:
+          <select name="dependence" className='services__select' onChange={handleChange} value={values.dependence}>
+            <option value="wallS">Площадь стен</option>
+            <option value="ceilingS">Площадь потолка</option>
+            <option value="floorS">Площадь пола</option>
+            <option value="wallP">Периметр стен</option>
+            <option value="ceilingP">Периметр потолка</option>
+            <option value="floorP">Периметр пола</option>
+          </select>
+        </label>
       <FormButton isFormValid={isFormValid} name='services-button' buttonText='Сохранить услугу' />
       <Link to='/services' className='services__link page__link'>К списку услуг</Link>
     </Form>

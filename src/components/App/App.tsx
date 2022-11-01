@@ -13,7 +13,7 @@ function App() {
   const [orders, setOrders] = React.useState<Array<OrderType>>([]);
 
   React.useEffect(() => {
-    if (localStorage.getItem('services') && services.length === 0) {
+    if (JSON.parse(localStorage.getItem('services')!).length > 0 && services.length === 0) {
       const servicesFromLS: Array<ServiceType> = JSON.parse(localStorage.getItem('services')!);
       setServices(servicesFromLS);
     }

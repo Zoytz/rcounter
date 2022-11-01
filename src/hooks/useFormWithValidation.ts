@@ -3,7 +3,7 @@ import { ChangeEvent } from 'react';
 
 type useFormWithValidationTypes = {
   values: Record<string, string> 
-  handleChange: (e: ChangeEvent<HTMLInputElement>) => void
+  handleChange: (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => void
   errors: Record<string, string>
   isFormValid: boolean
   resetForm: (
@@ -18,7 +18,7 @@ export function useFormWithValidation ():useFormWithValidationTypes {
   const [errors, setErrors] = useState({});
   const [isFormValid, setIsFormValid] = useState(false);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
     const input: any = e.target;
     const name: string = input.name;
     const value: string = input.value;
