@@ -13,34 +13,29 @@ function App() {
   const [orders, setOrders] = React.useState<Array<OrderType>>([]);
 
   React.useEffect(() => {
-    if (!localStorage.getItem('services')) {
-      return
-    } else {
-      const servicesFromLS: any = JSON.parse(localStorage.getItem('services')!);
-      setServices(servicesFromLS.reverse());
+    if (localStorage.getItem('services') && services.length === 0) {
+      const servicesFromLS: Array<ServiceType> = JSON.parse(localStorage.getItem('services')!);
+      setServices(servicesFromLS);
     }
-  }, []);
+  }, [services]);
 
   React.useEffect(() => {
-    if (!localStorage.getItem('orders')) {
-      return
-    } else {
-      console.log('tut chto li?')
-      const ordersFromLS: any = JSON.parse(localStorage.getItem('orders')!);
-      setOrders(ordersFromLS.reverse());
+    if (JSON.parse(localStorage.getItem('orders')!).length > 0 && orders.length === 0) {
+      const ordersFromLS: Array<OrderType> = JSON.parse(localStorage.getItem('orders')!);
+      setOrders(ordersFromLS);
     }
-  }, []);
+  }, [orders]);
 
   const handleServicesFormSubmit = (service: ServiceType): void => {
     const servicesArr: Array<ServiceType> = services;
-    servicesArr.reverse().push(service);
+    servicesArr.push(service);
     setServices(servicesArr);
     localStorage.setItem('services', JSON.stringify(servicesArr));
   }
 
   const handleOrdersFormSubmit = (order: OrderType): void => {
     const ordersArr: Array<OrderType> = orders;
-    ordersArr.reverse().push(order);
+    ordersArr.push(order);
     setOrders(ordersArr);
     localStorage.setItem('orders', JSON.stringify(ordersArr));
   }
@@ -62,7 +57,7 @@ function App() {
   return (
     <div className='page'>
       <Routes>
-        <Route path='/' element={localStorage.getItem('orders') ? <OrdersList handleDeleteOrder={handleDeleteOrder} orders={orders} /> : <StartScreen />} />
+        <Route path='/' element={orders.length !== 0 ? <OrdersList handleDeleteOrder={handleDeleteOrder} orders={orders} /> : <StartScreen />} />
         <Route path="/add-services" element={
           <ServicesForm
             handleServicesFormSubmit={handleServicesFormSubmit}
@@ -72,6 +67,7 @@ function App() {
           <OrdersForm handleOrdersFormSubmit={handleOrdersFormSubmit} />}
         />
         <Route path="*" element={<Page404 />} />
+        <Route path='/orders/:id' element={`privet`} />
         <Route path='/services' element={<ServicesList handleDeleteService={handleDeleteService} services={services} />} />
       </Routes>
     </div>

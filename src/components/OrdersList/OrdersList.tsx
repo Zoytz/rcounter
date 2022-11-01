@@ -13,7 +13,7 @@ const OrdersList: FC<PropsType> = ({ orders, handleDeleteOrder }) => {
     <>
       <ul className='orders page__list'>
         {
-          orders.map((order: OrderType) => {
+          [...orders].reverse().map((order: OrderType) => {
             return (
               <OrderCard key={order.id} handleDeleteOrder={handleDeleteOrder} order={order} />
             )

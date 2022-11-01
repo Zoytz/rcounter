@@ -15,12 +15,14 @@ const OrderCard: FC<PropsType> = ({ order, handleDeleteOrder }) => {
 
   return (
     <li key={order.id} className="order">
-      <h2 className="order__title">{order.city}, {order.street ? `ул. ${order.street}, ` : ''} {order.houseNumber ? `дом ${order.houseNumber}, ` : ''} {order.apartmentNumber ? `кв. ${order.apartmentNumber}` : ''}</h2>
-      <h3 className="order__subtitle">{order.customer}: {order.customerTel}</h3>
-      <div className="order__buttons">
-        <button onClick={handleButtonClick} type="button" className="order__button" aria-label='Кнопка удаления заказа'>Удалить</button>
-        <button onClick={handleButtonClick} type="button" className="order__button" aria-label='Посмотреть заказ подробнее'>Подробнее</button>
-      </div>
+      <Link className="order__link page__link" to={`/orders/${order.id}`}>
+        <h2 className="order__title">{order.city}, {order.street ? `ул. ${order.street}, ` : ''} {order.houseNumber ? `дом ${order.houseNumber}, ` : ''} {order.apartmentNumber ? `кв. ${order.apartmentNumber}` : ''}</h2>
+        <h3 className="order__subtitle">{order.customer}: {order.customerTel}</h3>
+        <div className="order__buttons">
+          <button onClick={handleButtonClick} type="button" className="order__button" aria-label='Кнопка удаления заказа'>Удалить</button>
+          <button onClick={handleButtonClick} type="button" className="order__button" aria-label='Посмотреть заказ подробнее'>Подробнее</button>
+        </div>
+      </Link>
     </li>
   )
 }
