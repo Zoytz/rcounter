@@ -48,3 +48,7 @@
   gap: 8px;
   color: #000;
 }
+
+.order__subtitle-link {
+  color: inherit;
+}

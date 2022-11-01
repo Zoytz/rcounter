@@ -13,15 +13,16 @@ const OrderCard: FC<PropsType> = ({ order, handleDeleteOrder }) => {
     handleDeleteOrder(order);
   }
 
+  const customerTel = String(order.customerTel);
+
   return (
     <li key={order.id} className="order">
       <Link className="order__link page__link" to={`/orders/${order.id}`}>
-        <h2 className="order__title">{order.city}, {order.street ? `ул. ${order.street}, ` : ''} {order.houseNumber ? `дом ${order.houseNumber}, ` : ''} {order.apartmentNumber ? `кв. ${order.apartmentNumber}` : ''}</h2>
-        <h3 className="order__subtitle">{order.customer}: {order.customerTel}</h3>
-        <div className="order__buttons">
-          <button onClick={handleButtonClick} type="button" className="order__button" aria-label='Кнопка удаления заказа'>Удалить</button>
-          <button onClick={handleButtonClick} type="button" className="order__button" aria-label='Посмотреть заказ подробнее'>Подробнее</button>
-        </div>
+        <h2 className="order__title">{order.city}, {order.street ? `ул. ${order.street}, ` : ''}</h2>
+        <h2 className="order__title">{order.houseNumber ? `дом ${order.houseNumber}, ` : ''} {order.apartmentNumber ? `кв. ${order.apartmentNumber}` : ''}</h2>
+        <h3 className="order__subtitle">{order.customer}:  
+        <a className="order__subtitle-link page__link" href={`tel: ${order.customerTel}`}>{customerTel.length === 11 ? `${customerTel[0]}(${customerTel.slice(0, 3)})${customerTel.slice(3, 6)}-${customerTel.slice(6, 8)}-${customerTel.slice(8, 10)}` : order.customerTel}</a>
+        </h3>
       </Link>
     </li>
   )
