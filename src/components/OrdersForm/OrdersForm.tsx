@@ -35,9 +35,6 @@ const OrdersForm: FC<PropsType> = ({ handleOrdersFormSubmit }) => {
     orderObj.apartmentNumber = Number(values.apartmentNumber);
     orderObj.customer = values.customer;
     orderObj.customerTel = Number(values.customerTel);
-    // if (values.customerTel.length === 11) {
-    //   orderObj.customerTel = Number(`${values.customerTel[0]} (${values.customerTel.slice(0, 3)}) ${values.customerTel.slice(3, 6)} ${values.customerTel.slice(6, 8)} ${values.customerTel.slice(8, 10)}`)
-    // }
     orderObj.id = date;
     handleOrdersFormSubmit(orderObj);
     resetForm();
