@@ -23,6 +23,11 @@
   font-size: 12px;
 }
 
+.service__button_type_warning {
+  background-color: red;
+  color: #000;
+}
+
 .service__span {
   display: block;
 }
