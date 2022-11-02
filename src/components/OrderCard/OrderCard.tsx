@@ -4,14 +4,9 @@ import { OrderType } from '../OrdersForm/OrdersForm';
 
 type PropsType = {
   order: OrderType
-  handleDeleteOrder: (param: OrderType) => void
 }
 
-const OrderCard: FC<PropsType> = ({ order, handleDeleteOrder }) => {
-
-  const handleButtonClick = () => {
-    handleDeleteOrder(order);
-  }
+const OrderCard: FC<PropsType> = ({ order }) => {
 
   const customerTel = String(order.customerTel);
 

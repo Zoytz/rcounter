@@ -5,17 +5,16 @@ import { OrderType } from '../OrdersForm/OrdersForm';
 
 type PropsType = {
   orders: Array<OrderType>
-  handleDeleteOrder: (params: OrderType) => void
 }
 
-const OrdersList: FC<PropsType> = ({ orders, handleDeleteOrder }) => {
+const OrdersList: FC<PropsType> = ({ orders }) => {
   return (
     <>
       <ul className='orders page__list'>
         {
           [...orders].reverse().map((order: OrderType) => {
             return (
-              <OrderCard key={order.id} handleDeleteOrder={handleDeleteOrder} order={order} />
+              <OrderCard key={order.id} order={order} />
             )
           })
         }

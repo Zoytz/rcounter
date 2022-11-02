@@ -6,6 +6,7 @@ import ServicesForm, { ServiceType } from '../ServicesForm/ServicesForm';
 import ServicesList from '../ServicesList/ServicesList';
 import OrdersForm, { OrderType } from '../OrdersForm/OrdersForm';
 import OrdersList from '../OrdersList/OrdersList';
+import OrderPage from '../OrderPage/OrderPage';
 
 function App() {
 
@@ -47,9 +48,9 @@ function App() {
     localStorage.setItem('services', JSON.stringify(newServicesArr));
   }
 
-  const handleDeleteOrder = (delitedOrder: OrderType): void => {
+  const handleDeleteOrder = (delitedOrderId: number): void => {
     const ordersArr: Array<OrderType> = orders;
-    const newOrdersArr: Array<OrderType> = ordersArr.filter(order => order.id !== delitedOrder.id);
+    const newOrdersArr: Array<OrderType> = ordersArr.filter(order => order.id !== delitedOrderId);
     setOrders(newOrdersArr);
     localStorage.setItem('orders', JSON.stringify(newOrdersArr));
   }
@@ -57,7 +58,7 @@ function App() {
   return (
     <div className='page'>
       <Routes>
-        <Route path='/' element={orders.length !== 0 ? <OrdersList handleDeleteOrder={handleDeleteOrder} orders={orders} /> : <StartScreen />} />
+        <Route path='/' element={orders.length !== 0 ? <OrdersList orders={orders} /> : <StartScreen />} />
         <Route path="/add-services" element={
           <ServicesForm
             handleServicesFormSubmit={handleServicesFormSubmit}
@@ -66,8 +67,9 @@ function App() {
         <Route path="/add-orders" element={
           <OrdersForm handleOrdersFormSubmit={handleOrdersFormSubmit} />}
         />
+        <Route path="/orders" element={<OrdersList orders={orders} />} />
         <Route path="*" element={<Page404 />} />
-        <Route path='/orders/:id' element={`privet`} />
+        <Route path='/orders/:orderId' element={<OrderPage handleDeleteOrder={handleDeleteOrder} orders={orders}/>} />
         <Route path='/services' element={<ServicesList handleDeleteService={handleDeleteService} services={services} />} />
       </Routes>
     </div>
