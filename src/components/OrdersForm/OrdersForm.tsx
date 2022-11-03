@@ -14,7 +14,7 @@ export type OrderType = {
   customer?: string
   customerTel?: number
   id?: number
-  rooms?: Array<RoomType>
+  rooms: any[]
 }
 
 type PropsType = {
@@ -30,7 +30,7 @@ const OrdersForm: FC<PropsType> = ({ handleOrdersFormSubmit }) => {
   const handleSubmit = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const date = Date.now();
-    const orderObj: OrderType = {};
+    const orderObj: OrderType | any = {};
     orderObj.city = values.city;
     orderObj.street = values.street;
     orderObj.houseNumber = Number(values.houseNumber);
@@ -38,6 +38,7 @@ const OrdersForm: FC<PropsType> = ({ handleOrdersFormSubmit }) => {
     orderObj.customer = values.customer;
     orderObj.customerTel = Number(values.customerTel);
     orderObj.id = date;
+    orderObj.rooms = [];
     handleOrdersFormSubmit(orderObj);
     resetForm();
     navigate('/');

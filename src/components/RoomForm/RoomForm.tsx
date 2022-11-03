@@ -8,7 +8,7 @@ import { OrderType } from '../OrdersForm/OrdersForm';
 
 export type RoomType = {
   roomName: string | null
-  roomWallS?: number | null
+  roomWallS: number | null
   roomFloorS: number | null
   roomCeilingS: number | null
   roomFloorP: number | null
@@ -17,21 +17,32 @@ export type RoomType = {
 
 type PropsType = {
   orders: Array<OrderType>
+  handleAddRoom: (param: OrderType) => void
 }
 
-const RoomForm: FC<PropsType> = ({ orders }) => {
+const RoomForm: FC<PropsType> = ({ orders, handleAddRoom }) => {
 
   const { orderId } = useParams();
 
   const navigate = useNavigate();
 
-  const currentOrder = orders.find(order => order.id === Number(orderId));
+  const currentOrder: any = orders.find(order => order.id === Number(orderId));
 
   const { values, handleChange, errors, isFormValid, resetForm } = useFormWithValidation();
 
   const handleSubmit = (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
+    const roomObj: RoomType | any = {};
+    roomObj.roomName = values.roomName;
+    roomObj.roomWallS = (Number(values.roomWallOne) * Number(values.roomWallOne ) * Number(values.roomWallHeight)) - ((Number(values.roomWindowsCount) * 2.5) + (Number(values.roomDoorsCount) * 1.6));
+    roomObj.roomFloorS = Number(values.roomWallOne) * Number(values.roomWallOne);
+    roomObj.roomCeilingS = Number(values.roomWallOne) * Number(values.roomWallOne);
+    roomObj.roomFloorP = Number(values.roomWallOne) + Number(values.roomWallOne);
+    roomObj.roomCeilingP = Number(values.roomWallOne) + Number(values.roomWallOne);
 
+    currentOrder.rooms.push(roomObj);
+
+    handleAddRoom(currentOrder);
     resetForm();
     navigate(`/orders/${orderId}`);
   }
@@ -41,7 +52,7 @@ const RoomForm: FC<PropsType> = ({ orders }) => {
       <FormInput required={true} onChange={handleChange} value={values.roomName} name='roomName' type="text" label='Название помещения:' error={errors.serviceName} />
       <FormInput required={true} onChange={handleChange} value={values.roomWallOne} name='roomWallOne' type="number" label='Длина первой стены:' error={errors.servicePrice} />
       <FormInput required={true} onChange={handleChange} value={values.roomWallTwo} name='roomWallTwo' type="number" label='Длина второй стены:' error={errors.servicePrice} />
-      <FormInput required={false} onChange={handleChange} value={values.roomWallHeight} name='roomWallHeight' type="number" label='Высота стен:' error={errors.servicePrice} />
+      <FormInput required={true} onChange={handleChange} value={values.roomWallHeight} name='roomWallHeight' type="number" label='Высота стен:' error={errors.servicePrice} />
       <FormInput required={false} onChange={handleChange} value={values.roomWindowsCount} name='roomWindowsCount' type="number" label='Количество окон:' error={errors.servicePrice} />
       <FormInput required={true} onChange={handleChange} value={values.roomDoorsCount} name='roomDoorsCount' type="number" label='Количество дверей:' error={errors.servicePrice} />
       <FormButton isFormValid={isFormValid} name='services-button' buttonText='Сохранить помещение' />

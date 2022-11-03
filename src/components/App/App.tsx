@@ -39,6 +39,7 @@ function App() {
 
   const handleOrdersFormSubmit = (order: OrderType): void => {
     const ordersArr: Array<OrderType> = orders;
+    console.log(order)
     ordersArr.push(order);
     setOrders(ordersArr);
     localStorage.setItem('orders', JSON.stringify(ordersArr));
@@ -59,10 +60,23 @@ function App() {
     localStorage.setItem('orders', JSON.stringify(newOrdersArr));
   }
 
+  const handleAddRoom = (updatedOrder: OrderType): void => {
+    const newOrdersArr = orders.map((order) => {
+      if (order.id === updatedOrder.id) {
+        return updatedOrder
+      } else {
+        return order;
+      }
+    })
+    setOrders(newOrdersArr);
+    localStorage.setItem('orders', JSON.stringify(newOrdersArr));
+    navigate('/orders')
+  }
+
   return (
     <div className='page'>
       <Routes>
-        <Route path='/' element={orders.length !== 0 ? <Navigate to="/orders"/> : <StartScreen />} />
+        <Route path='/' element={orders.length !== 0 ? <Navigate to="/orders" /> : <StartScreen />} />
         <Route path="/add-services" element={
           <ServicesForm
             handleServicesFormSubmit={handleServicesFormSubmit}
@@ -71,10 +85,10 @@ function App() {
         <Route path="/add-orders" element={
           <OrdersForm handleOrdersFormSubmit={handleOrdersFormSubmit} />}
         />
-        <Route path="/orders" element={orders.length === 0 ? <Navigate to="/"/> : <OrdersList orders={orders} />} />
+        <Route path="/orders" element={orders.length === 0 ? <Navigate to="/" /> : <OrdersList orders={orders} />} />
         <Route path="*" element={<Page404 />} />
-        <Route path='/orders/:orderId' element={<OrderPage handleDeleteOrder={handleDeleteOrder} orders={orders}/>} />
-        <Route path='/room-form/:orderId' element={<RoomForm orders={orders} />} />
+        <Route path='/orders/:orderId' element={<OrderPage handleDeleteOrder={handleDeleteOrder} orders={orders} />} />
+        <Route path='/room-form/:orderId' element={<RoomForm handleAddRoom={handleAddRoom} orders={orders} />} />
         <Route path='/services' element={<ServicesList handleDeleteService={handleDeleteService} services={services} />} />
       </Routes>
     </div>
