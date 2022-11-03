@@ -7,6 +7,7 @@ import ServicesList from '../ServicesList/ServicesList';
 import OrdersForm, { OrderType } from '../OrdersForm/OrdersForm';
 import OrdersList from '../OrdersList/OrdersList';
 import OrderPage from '../OrderPage/OrderPage';
+import RoomForm from '../RoomForm/RoomForm';
 
 function App() {
 
@@ -73,6 +74,7 @@ function App() {
         <Route path="/orders" element={orders.length === 0 ? <Navigate to="/"/> : <OrdersList orders={orders} />} />
         <Route path="*" element={<Page404 />} />
         <Route path='/orders/:orderId' element={<OrderPage handleDeleteOrder={handleDeleteOrder} orders={orders}/>} />
+        <Route path='/room-form/:orderId' element={<RoomForm orders={orders} />} />
         <Route path='/services' element={<ServicesList handleDeleteService={handleDeleteService} services={services} />} />
       </Routes>
     </div>

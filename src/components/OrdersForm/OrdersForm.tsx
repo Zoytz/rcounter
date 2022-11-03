@@ -4,6 +4,7 @@ import FormInput from '../FormInput/FormInput';
 import FormButton from '../FormButton/FormButton';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 import { useNavigate } from 'react-router-dom';
+import { RoomType } from '../RoomForm/RoomForm';
 
 export type OrderType = {
   city?: string
@@ -13,6 +14,7 @@ export type OrderType = {
   customer?: string
   customerTel?: number
   id?: number
+  rooms?: Array<RoomType>
 }
 
 type PropsType = {
