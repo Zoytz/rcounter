@@ -7,19 +7,17 @@
 }
 
 .order-page__delButton {
+  border: none;
   background-color: #000;
-  border: 2px solid #000;
-  border-radius: 2px;
+  border-radius: 4px;
   color: #fff;
   font-size: 12px;
-  padding: 5px 15px;
+  padding: 6px 18px;
   align-self: start;
 }
 
 .order-page__delButton_type_warning {
-  color: #000;
-  border: 2px solid #000;
-  background-color: red;
+  background: linear-gradient(45deg, red 20%, black);
 }
 
 .order-page__text {
@@ -45,8 +43,83 @@
 .order-page__title {
   margin: 0;
   font-size: 16px;
-  margin-top: 10px;
-  margin-bottom: 10px;
   padding-bottom: 2px;
   border-bottom: 2px solid #000;
+}
+
+.order-page__addRoomButton {
+  border: none;
+  background-color: #000;
+  border-radius: 5px;
+  padding: 10px 20px;
+  color: #fff;
+  font-size: 13px;
+}
+
+.rooms {
+  width: 100%;
+  border: 2px solid #000;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.room {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  padding: 5px 10px;
+}
+
+.room__title {
+  margin: 0;
+  font-size: 15px;
+}
+
+.room__info {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  color: grey;
+  font-size: 13px;
+}
+
+.room__span {
+  color: #000;
+}
+
+.room__subtitle {
+  margin: 0;
+  font-size: 14px;
+}
+
+.room__services {
+  width: 100%;
+  padding: 2px 5px;
+  border: 1px solid #000;
+  border-radius: 6px;
+  font-size: 13px;
+  height: 100%;
+}
+
+.room__label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  height: 27px;
+}
+
+.room__delButton {
+  background: none;
+  border: 1px solid #000;
+  height: 100%;
+  border-radius: 6px;
+  box-sizing: border-box;
+  padding: 0;
+  width: 12%;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import StartScreen from '../StartScreen/StartScreen';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import { Page404 } from '../Page404/Page404';
 import ServicesForm, { ServiceType } from '../ServicesForm/ServicesForm';
 import ServicesList from '../ServicesList/ServicesList';
@@ -27,6 +27,8 @@ function App() {
     }
   }, [orders]);
 
+  const navigate = useNavigate();
+
   const handleServicesFormSubmit = (service: ServiceType): void => {
     const servicesArr: Array<ServiceType> = services;
     servicesArr.push(service);
@@ -39,6 +41,7 @@ function App() {
     ordersArr.push(order);
     setOrders(ordersArr);
     localStorage.setItem('orders', JSON.stringify(ordersArr));
+    navigate('/orders')
   }
 
   const handleDeleteService = (delitedService: ServiceType): void => {
@@ -58,7 +61,7 @@ function App() {
   return (
     <div className='page'>
       <Routes>
-        <Route path='/' element={orders.length !== 0 ? <OrdersList orders={orders} /> : <StartScreen />} />
+        <Route path='/' element={orders.length !== 0 ? <Navigate to="/orders"/> : <StartScreen />} />
         <Route path="/add-services" element={
           <ServicesForm
             handleServicesFormSubmit={handleServicesFormSubmit}
@@ -67,7 +70,7 @@ function App() {
         <Route path="/add-orders" element={
           <OrdersForm handleOrdersFormSubmit={handleOrdersFormSubmit} />}
         />
-        <Route path="/orders" element={<OrdersList orders={orders} />} />
+        <Route path="/orders" element={orders.length === 0 ? <Navigate to="/"/> : <OrdersList orders={orders} />} />
         <Route path="*" element={<Page404 />} />
         <Route path='/orders/:orderId' element={<OrderPage handleDeleteOrder={handleDeleteOrder} orders={orders}/>} />
         <Route path='/services' element={<ServicesList handleDeleteService={handleDeleteService} services={services} />} />

@@ -15,7 +15,7 @@ const OrderCard: FC<PropsType> = ({ order }) => {
       <h2 className="order__title">{order.city}, {order.street ? `ул. ${order.street}, ` : ''}</h2>
       <h2 className="order__title">{order.houseNumber ? `дом ${order.houseNumber}, ` : ''} {order.apartmentNumber ? `кв. ${order.apartmentNumber}` : ''}</h2>
       <h3 className="order__subtitle">{order.customer}:
-        <a className="order__subtitle-link page__link" href={`tel: ${order.customerTel}`}>{customerTel.length === 11 ? `${customerTel[0]}(${customerTel.slice(0, 3)})${customerTel.slice(3, 6)}-${customerTel.slice(6, 8)}-${customerTel.slice(8, 10)}` : order.customerTel}</a>
+        <a className="order__subtitle-link page__link" href={`tel: ${order.customerTel}`}>{customerTel.length === 11 ? `${customerTel[0]}(${customerTel.slice(1, 4)})${customerTel.slice(4, 7)}-${customerTel.slice(7, 9)}-${customerTel.slice(9, 11)}` : order.customerTel}</a>
       </h3>
       <div className="order__buttons">
         <a href={`tel: ${order.customerTel}`} className="order__button">Позвонить</a>
