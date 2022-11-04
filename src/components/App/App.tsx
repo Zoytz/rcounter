@@ -60,7 +60,7 @@ function App() {
     localStorage.setItem('orders', JSON.stringify(newOrdersArr));
   }
 
-  const handleAddRoom = (updatedOrder: OrderType): void => {
+  const handleUpdateRooms = (updatedOrder: OrderType): void => {
     const newOrdersArr = orders.map((order) => {
       if (order.id === updatedOrder.id) {
         return updatedOrder
@@ -88,7 +88,7 @@ function App() {
         <Route path="/orders" element={orders.length === 0 ? <Navigate to="/" /> : <OrdersList orders={orders} />} />
         <Route path="*" element={<Page404 />} />
         <Route path='/orders/:orderId' element={<OrderPage handleDeleteOrder={handleDeleteOrder} orders={orders} />} />
-        <Route path='/room-form/:orderId' element={<RoomForm handleAddRoom={handleAddRoom} orders={orders} />} />
+        <Route path='/room-form/:orderId' element={<RoomForm handleUpdateRooms={handleUpdateRooms} orders={orders} />} />
         <Route path='/services' element={<ServicesList handleDeleteService={handleDeleteService} services={services} />} />
       </Routes>
     </div>

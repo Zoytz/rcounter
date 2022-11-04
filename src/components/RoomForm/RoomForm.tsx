@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC } from 'react';
+import { ChangeEvent, FC } from 'react';
 import Form from '../Form/Form';
 import FormInput from '../FormInput/FormInput';
 import FormButton from '../FormButton/FormButton';
@@ -17,10 +17,10 @@ export type RoomType = {
 
 type PropsType = {
   orders: Array<OrderType>
-  handleAddRoom: (param: OrderType) => void
+  handleUpdateRooms: (param: OrderType) => void
 }
 
-const RoomForm: FC<PropsType> = ({ orders, handleAddRoom }) => {
+const RoomForm: FC<PropsType> = ({ orders, handleUpdateRooms }) => {
 
   const { orderId } = useParams();
 
@@ -32,17 +32,19 @@ const RoomForm: FC<PropsType> = ({ orders, handleAddRoom }) => {
 
   const handleSubmit = (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
-    const roomObj: RoomType | any = {};
-    roomObj.roomName = values.roomName;
-    roomObj.roomWallS = (Number(values.roomWallOne) * Number(values.roomWallOne ) * Number(values.roomWallHeight)) - ((Number(values.roomWindowsCount) * 2.5) + (Number(values.roomDoorsCount) * 1.6));
-    roomObj.roomFloorS = Number(values.roomWallOne) * Number(values.roomWallOne);
-    roomObj.roomCeilingS = Number(values.roomWallOne) * Number(values.roomWallOne);
-    roomObj.roomFloorP = Number(values.roomWallOne) + Number(values.roomWallOne);
-    roomObj.roomCeilingP = Number(values.roomWallOne) + Number(values.roomWallOne);
+    
+    currentOrder.rooms.push(
+      {
+      roomName: values.roomName,
+      roomWallS: ((Number(values.roomWallOne) * Number(values.roomWallHeight) * 2) + (Number(values.roomWallTwo) * Number(values.roomWallHeight) * 2)) - (Number(values.roomWindowsCount) * 2.5) - (Number(values.roomDoorsCount) * 1.6),
+      roomFloorS: Number(values.roomWallOne) * Number(values.roomWallTwo),
+      roomCeilingS: Number(values.roomWallOne) * Number(values.roomWallTwo),
+      roomFloorP: (Number(values.roomWallOne) + Number(values.roomWallTwo)) * 2,
+      roomCeilingP: (Number(values.roomWallOne) + Number(values.roomWallTwo)) * 2,
+      id: Date.now(),
+    });
 
-    currentOrder.rooms.push(roomObj);
-
-    handleAddRoom(currentOrder);
+    handleUpdateRooms(currentOrder);
     resetForm();
     navigate(`/orders/${orderId}`);
   }
