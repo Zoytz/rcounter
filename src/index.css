@@ -51,3 +51,7 @@
 /* OrderPage */
 
 @import url(../src/components/OrderPage/OrderPage.css);
+
+/* RoomCard */
+
+@import url(../src/components/RoomCard/RoomCard.css);

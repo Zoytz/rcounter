@@ -1,0 +1,86 @@
+.rooms {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.room {
+  border: 2px solid #000;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  padding: 5px 10px;
+}
+
+.room__title {
+  margin: 0;
+  font-size: 18px;
+}
+
+.room__info {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  color: grey;
+  font-size: 13px;
+}
+
+.room__span {
+  color: #000;
+}
+
+.room__subtitle {
+  margin: 0;
+  font-size: 14px;
+}
+
+.room__services {
+  width: 100%;
+  padding: 2px 5px;
+  border: 1px solid #000;
+  border-radius: 6px;
+  font-size: 13px;
+  height: 100%;
+}
+
+.room__label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  height: 27px;
+}
+
+.room__servicesDelButton {
+  background: none;
+  border: 1px solid #000;
+  height: 100%;
+  border-radius: 6px;
+  box-sizing: border-box;
+  padding: 0;
+  width: 12%;
+}
+
+.room__header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.room__delButton {
+  border: none;
+  background-color: #000;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 11px;
+  padding: 5px 10px;
+}
+
+.room__delButton_type_warning {
+  background: linear-gradient(45deg, red 20%, black);
+}

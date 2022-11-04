@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { OrderType } from '../OrdersForm/OrdersForm';
+import RoomCard from '../RoomCard/RoomCard';
 import { RoomType } from '../RoomForm/RoomForm';
 
 type PropsType = {
@@ -44,25 +45,7 @@ const OrderPage: FC<PropsType> = ({ orders, handleDeleteOrder, rooms }) => {
         {
           currentRooms.map((currentRoom: RoomType) => {
             return (
-              <li className="room" >
-                <div className="room__header">
-                  <button className="room__delButton">Удалить</button>
-                  <h2 className="room__title">{currentRoom.roomName}</h2>
-                </div>
-                <p className="room__info">Площадь стен:<span className="room__span">
-                  {currentRoom.roomWallS} кв./м.</span></p>
-                <p className="room__info">Площадь потолка/пола:<span className="room__span">{currentRoom.roomCeilingS} кв./м.</span></p>
-                <h3 className="room__subtitle">Услуги:</h3>
-                <label htmlFor="roomServices" className="room__label">
-                  <button className='room__servicesDelButton'><span className="room__buttonSpan">x</span></button>
-                  <select name="roomServices" className="room__services">
-                    <option value="Услуга один" className="room__service">Услуга один</option>
-                    <option value="Услуга два" className="room__service">Услуга два</option>
-                    <option value="Услуга три" className="room__service">Услуга три</option>
-                    <option value="Услуга четыре" className="room__service">Услуга четыре</option>
-                  </select>
-                </label>
-              </li>
+              <RoomCard currentRoom={currentRoom} />
             )
           })
         }
