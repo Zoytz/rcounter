@@ -13,38 +13,33 @@ export type RoomType = {
   roomCeilingS: number | null
   roomFloorP: number | null
   roomCeilingP: number | null
+  orderId: number
 }
 
 type PropsType = {
-  orders: Array<OrderType>
-  handleUpdateRooms: (param: OrderType) => void
+  handleAddRooms: (param: RoomType) => void
 }
 
-const RoomForm: FC<PropsType> = ({ orders, handleUpdateRooms }) => {
+const RoomForm: FC<PropsType> = ({ handleAddRooms }) => {
 
   const { orderId } = useParams();
 
   const navigate = useNavigate();
 
-  const currentOrder: any = orders.find(order => order.id === Number(orderId));
-
   const { values, handleChange, errors, isFormValid, resetForm } = useFormWithValidation();
 
   const handleSubmit = (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
-    
-    currentOrder.rooms.push(
-      {
+
+    handleAddRooms({
       roomName: values.roomName,
       roomWallS: ((Number(values.roomWallOne) * Number(values.roomWallHeight) * 2) + (Number(values.roomWallTwo) * Number(values.roomWallHeight) * 2)) - (Number(values.roomWindowsCount) * 2.5) - (Number(values.roomDoorsCount) * 1.6),
       roomFloorS: Number(values.roomWallOne) * Number(values.roomWallTwo),
       roomCeilingS: Number(values.roomWallOne) * Number(values.roomWallTwo),
       roomFloorP: (Number(values.roomWallOne) + Number(values.roomWallTwo)) * 2,
       roomCeilingP: (Number(values.roomWallOne) + Number(values.roomWallTwo)) * 2,
-      id: Date.now(),
+      orderId: Number(orderId),
     });
-
-    handleUpdateRooms(currentOrder);
     resetForm();
     navigate(`/orders/${orderId}`);
   }

@@ -1,21 +1,25 @@
 import React, { FC, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { OrderType } from '../OrdersForm/OrdersForm';
+import { RoomType } from '../RoomForm/RoomForm';
 
 type PropsType = {
   orders: Array<OrderType>
+  rooms: Array<RoomType>
   handleDeleteOrder: (param: number) => void
 }
 
-const OrderPage: FC<PropsType> = ({ orders, handleDeleteOrder }) => {
+const OrderPage: FC<PropsType> = ({ orders, handleDeleteOrder, rooms }) => {
 
   const navigate = useNavigate();
 
   const { orderId } = useParams();
 
-  const currentOrder: OrderType | undefined = orders.find(order => order.id === Number(orderId));
+  const currentOrder = orders.find(order => order.id === Number(orderId)) as OrderType;
 
   const [buttonCounter, setButtonCounter] = useState<number>(0);
+
+  const currentRooms = rooms.filter((room) => room.orderId === Number(orderId));
 
   const handleButtonClick = () => {
     if (buttonCounter === 0) {
@@ -37,24 +41,33 @@ const OrderPage: FC<PropsType> = ({ orders, handleDeleteOrder }) => {
       <h2 className="order-page__title">Помещения и услуги:</h2>
       <Link to={`/room-form/${orderId}`} className="order-page__addRoomButton page__link" aria-label='Кнопка добавления помещения'>Добавить помещение</Link>
       <ul className="rooms page__list">
-        <li className="room">
-          <h2 className="room__title">Кухня</h2>
-          <p className="room__info">Площадь стен:<span className="room__span">40 кв./м.</span></p>
-          <p className="room__info">Площадь потолка:<span className="room__span">70 кв./м.</span></p>
-          <p className="room__info">Площадь пола:<span className="room__span">70 кв./м.</span></p>
-          <h3 className="room__subtitle">Услуги:</h3>
-          <label htmlFor="roomServices" className="room__label">
-            <button className='room__delButton'><span className="room__buttonSpan">x</span></button>
-            <select name="roomServices" className="room__services">
-              <option value="Услуга один" className="room__service">Услуга один</option>
-              <option value="Услуга два" className="room__service">Услуга два</option>
-              <option value="Услуга три" className="room__service">Услуга три</option>
-              <option value="Услуга четыре" className="room__service">Услуга четыре</option>
-            </select>
-          </label>
-        </li>
+        {
+          currentRooms.map((currentRoom: RoomType) => {
+            return (
+              <li className="room" >
+                <div className="room__header">
+                  <button className="room__delButton">Удалить</button>
+                  <h2 className="room__title">{currentRoom.roomName}</h2>
+                </div>
+                <p className="room__info">Площадь стен:<span className="room__span">
+                  {currentRoom.roomWallS} кв./м.</span></p>
+                <p className="room__info">Площадь потолка/пола:<span className="room__span">{currentRoom.roomCeilingS} кв./м.</span></p>
+                <h3 className="room__subtitle">Услуги:</h3>
+                <label htmlFor="roomServices" className="room__label">
+                  <button className='room__servicesDelButton'><span className="room__buttonSpan">x</span></button>
+                  <select name="roomServices" className="room__services">
+                    <option value="Услуга один" className="room__service">Услуга один</option>
+                    <option value="Услуга два" className="room__service">Услуга два</option>
+                    <option value="Услуга три" className="room__service">Услуга три</option>
+                    <option value="Услуга четыре" className="room__service">Услуга четыре</option>
+                  </select>
+                </label>
+              </li>
+            )
+          })
+        }
       </ul>
-    </div>
+    </div >
   )
 }
 

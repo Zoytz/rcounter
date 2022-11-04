@@ -58,14 +58,14 @@
 
 .rooms {
   width: 100%;
-  border: 2px solid #000;
-  border-radius: 10px;
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
 .room {
+  border: 2px solid #000;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -75,7 +75,7 @@
 
 .room__title {
   margin: 0;
-  font-size: 15px;
+  font-size: 18px;
 }
 
 .room__info {
@@ -114,7 +114,7 @@
   height: 27px;
 }
 
-.room__delButton {
+.room__servicesDelButton {
   background: none;
   border: 1px solid #000;
   height: 100%;
@@ -122,4 +122,23 @@
   box-sizing: border-box;
   padding: 0;
   width: 12%;
+}
+
+.room__header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.room__delButton {
+  border: none;
+  background-color: #000;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 11px;
+  padding: 5px 10px;
+}
+
+.room__delButton_type_warning {
+  background: linear-gradient(45deg, red 20%, black);
 }

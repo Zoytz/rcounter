@@ -14,7 +14,6 @@ export type OrderType = {
   customer?: string
   customerTel?: number
   id: number
-  rooms?: Array<RoomType>
 }
 
 type PropsType = {

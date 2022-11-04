@@ -7,12 +7,13 @@ import ServicesList from '../ServicesList/ServicesList';
 import OrdersForm, { OrderType } from '../OrdersForm/OrdersForm';
 import OrdersList from '../OrdersList/OrdersList';
 import OrderPage from '../OrderPage/OrderPage';
-import RoomForm from '../RoomForm/RoomForm';
+import RoomForm, { RoomType } from '../RoomForm/RoomForm';
 
 function App() {
 
   const [services, setServices] = React.useState<Array<ServiceType>>([]);
   const [orders, setOrders] = React.useState<Array<OrderType>>([]);
+  const [rooms, setRooms] = React.useState<Array<RoomType>>([]);
 
   React.useEffect(() => {
     if (JSON.parse(localStorage.getItem('services')!).length > 0 && services.length === 0) {
@@ -28,6 +29,13 @@ function App() {
     }
   }, [orders]);
 
+  React.useEffect(() => {
+    if (localStorage.getItem('rooms') && JSON.parse(localStorage.getItem('rooms')!).length > 0 && rooms.length === 0) {
+      const roomsFromLS = JSON.parse(localStorage.getItem('rooms')!);
+      setRooms(roomsFromLS);
+    }
+  }, [rooms]);
+
   const navigate = useNavigate();
 
   const handleServicesFormSubmit = (service: ServiceType): void => {
@@ -39,7 +47,6 @@ function App() {
 
   const handleOrdersFormSubmit = (order: OrderType): void => {
     const ordersArr: Array<OrderType> = orders;
-    console.log(order)
     ordersArr.push(order);
     setOrders(ordersArr);
     localStorage.setItem('orders', JSON.stringify(ordersArr));
@@ -60,17 +67,11 @@ function App() {
     localStorage.setItem('orders', JSON.stringify(newOrdersArr));
   }
 
-  const handleUpdateRooms = (updatedOrder: OrderType): void => {
-    const newOrdersArr = orders.map((order) => {
-      if (order.id === updatedOrder.id) {
-        return updatedOrder
-      } else {
-        return order;
-      }
-    })
-    setOrders(newOrdersArr);
-    localStorage.setItem('orders', JSON.stringify(newOrdersArr));
-    navigate('/orders')
+  const handleAddRooms = (newRoom: RoomType): void => {
+    const roomsArr = rooms;
+    roomsArr.push(newRoom);
+    setRooms(roomsArr);
+    localStorage.setItem('rooms', JSON.stringify(roomsArr));
   }
 
   return (
@@ -87,8 +88,8 @@ function App() {
         />
         <Route path="/orders" element={orders.length === 0 ? <Navigate to="/" /> : <OrdersList orders={orders} />} />
         <Route path="*" element={<Page404 />} />
-        <Route path='/orders/:orderId' element={<OrderPage handleDeleteOrder={handleDeleteOrder} orders={orders} />} />
-        <Route path='/room-form/:orderId' element={<RoomForm handleUpdateRooms={handleUpdateRooms} orders={orders} />} />
+        <Route path='/orders/:orderId' element={<OrderPage handleDeleteOrder={handleDeleteOrder} orders={orders} rooms={rooms} />} />
+        <Route path='/room-form/:orderId' element={<RoomForm handleAddRooms={handleAddRooms} />} />
         <Route path='/services' element={<ServicesList handleDeleteService={handleDeleteService} services={services} />} />
       </Routes>
     </div>
