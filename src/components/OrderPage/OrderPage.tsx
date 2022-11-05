@@ -3,14 +3,17 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import { OrderType } from '../OrdersForm/OrdersForm';
 import RoomCard from '../RoomCard/RoomCard';
 import { RoomType } from '../RoomForm/RoomForm';
+import { ServiceType } from '../ServicesForm/ServicesForm';
 
 type PropsType = {
   orders: Array<OrderType>
   rooms: Array<RoomType>
+  services: Array<ServiceType>
   handleDeleteOrder: (param: number) => void
+  handleDeleteRoom: (param: number) => void
 }
 
-const OrderPage: FC<PropsType> = ({ orders, handleDeleteOrder, rooms }) => {
+const OrderPage: FC<PropsType> = ({ orders, handleDeleteOrder, rooms, handleDeleteRoom, services }) => {
 
   const navigate = useNavigate();
 
@@ -43,11 +46,12 @@ const OrderPage: FC<PropsType> = ({ orders, handleDeleteOrder, rooms }) => {
       <Link to={`/room-form/${orderId}`} className="order-page__addRoomButton page__link" aria-label='Кнопка добавления помещения'>Добавить помещение</Link>
       <ul className="rooms page__list">
         {
+          currentRooms.length !== 0 ? 
           currentRooms.map((currentRoom: RoomType) => {
             return (
-              <RoomCard currentRoom={currentRoom} />
+              <RoomCard key={currentRoom.id} currentRoom={currentRoom} handleDeleteRoom={handleDeleteRoom} services={services} />
             )
-          })
+          }) : <p className="rooms__info">Пока нет помещений</p>
         }
       </ul>
     </div >

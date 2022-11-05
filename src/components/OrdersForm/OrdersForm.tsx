@@ -1,10 +1,9 @@
-import { ChangeEvent, FC }  from 'react';
+import { ChangeEvent, FC } from 'react';
 import Form from '../Form/Form';
 import FormInput from '../FormInput/FormInput';
 import FormButton from '../FormButton/FormButton';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 import { useNavigate } from 'react-router-dom';
-import { RoomType } from '../RoomForm/RoomForm';
 
 export type OrderType = {
   city?: string
@@ -29,15 +28,19 @@ const OrdersForm: FC<PropsType> = ({ handleOrdersFormSubmit }) => {
   const handleSubmit = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const date = Date.now();
-    
-    handleOrdersFormSubmit(
-      {city:  values.city,
+
+    const orderObj =
+    {
+      city: values.city,
       street: values.street,
       houseNumber: Number(values.houseNumber),
       apartmentNumber: Number(values.apartmentNumber),
       customer: values.customer,
       customerTel: Number(values.customerTel),
-      id: date,});
+      id: date,
+    }
+
+    handleOrdersFormSubmit(orderObj);
     resetForm();
     navigate('/');
   }
@@ -51,7 +54,7 @@ const OrdersForm: FC<PropsType> = ({ handleOrdersFormSubmit }) => {
       <FormInput required={true} onChange={handleChange} value={values.customer} name='customer' type="text" label='Имя заказчика:' error={errors.customer} />
       <FormInput required={true} onChange={handleChange} value={values.customerTel} name='customerTel' type="number" label='Тел. заказчика:' error={errors.customerTel} />
       <FormButton isFormValid={isFormValid} name='orders-button' buttonText='Создать заказ' />
-    </Form> 
+    </Form>
   )
 }
 

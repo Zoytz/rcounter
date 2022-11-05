@@ -26,7 +26,7 @@ const ServicesForm: FC<PropsType> = ({ handleServicesFormSubmit }) => {
     const serviceObj: ServiceType = { name: null, price: null, dependence: null };
     const name: string = values.serviceName;
     const price: number = Number(values.servicePrice);
-    const dependence: string = values.name;
+    const dependence: string = values.dependence;
     serviceObj.name = name;
     serviceObj.price = price;
     serviceObj.dependence = dependence;
@@ -45,7 +45,6 @@ const ServicesForm: FC<PropsType> = ({ handleServicesFormSubmit }) => {
             <option value="wallS">Площадь стен</option>
             <option value="ceilingS">Площадь потолка</option>
             <option value="floorS">Площадь пола</option>
-            <option value="wallP">Периметр стен</option>
             <option value="ceilingP">Периметр потолка</option>
             <option value="floorP">Периметр пола</option>
           </select>

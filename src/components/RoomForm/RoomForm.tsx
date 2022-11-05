@@ -4,16 +4,21 @@ import FormInput from '../FormInput/FormInput';
 import FormButton from '../FormButton/FormButton';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { OrderType } from '../OrdersForm/OrdersForm';
 
 export type RoomType = {
-  roomName: string | null
-  roomWallS: number | null
-  roomFloorS: number | null
-  roomCeilingS: number | null
-  roomFloorP: number | null
-  roomCeilingP: number | null
+  roomName: string
+  roomWallS: number
+  roomFloorS: number
+  roomCeilingS: number
+  roomFloorP: number
+  roomCeilingP: number
   orderId: number
+  id: number
+  roomDoorsCount: string
+  roomWindowsCount?: string,
+  roomWallOne: string,
+  roomWallTwo: string,
+  roomWallHeight: string,
 }
 
 type PropsType = {
@@ -33,12 +38,18 @@ const RoomForm: FC<PropsType> = ({ handleAddRooms }) => {
 
     handleAddRooms({
       roomName: values.roomName,
-      roomWallS: ((Number(values.roomWallOne) * Number(values.roomWallHeight) * 2) + (Number(values.roomWallTwo) * Number(values.roomWallHeight) * 2)) - (Number(values.roomWindowsCount) * 2.5) - (Number(values.roomDoorsCount) * 1.6),
-      roomFloorS: Number(values.roomWallOne) * Number(values.roomWallTwo),
-      roomCeilingS: Number(values.roomWallOne) * Number(values.roomWallTwo),
-      roomFloorP: (Number(values.roomWallOne) + Number(values.roomWallTwo)) * 2,
-      roomCeilingP: (Number(values.roomWallOne) + Number(values.roomWallTwo)) * 2,
+      roomWallS: (((Number(values.roomWallOne) * Number(values.roomWallHeight) * 2) + (Number(values.roomWallTwo) * Number(values.roomWallHeight) * 2)) - (Number(values.roomWindowsCount) * 2.5) - (Number(values.roomDoorsCount) * 1.6)),
+      roomFloorS: (Number(values.roomWallOne) * Number(values.roomWallTwo)),
+      roomCeilingS: (Number(values.roomWallOne) * Number(values.roomWallTwo)),
+      roomFloorP: ((Number(values.roomWallOne) + Number(values.roomWallTwo)) * 2),
+      roomCeilingP: ((Number(values.roomWallOne) + Number(values.roomWallTwo)) * 2),
+      roomDoorsCount: values.roomDoorsCount,
+      roomWindowsCount: values.roomWindowsCount,
+      roomWallOne: values.roomWallOne,
+      roomWallTwo: values.roomWallTwo,
+      roomWallHeight: values.roomWallHeight,
       orderId: Number(orderId),
+      id: Date.now(),
     });
     resetForm();
     navigate(`/orders/${orderId}`);

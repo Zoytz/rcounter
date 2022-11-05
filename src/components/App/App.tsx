@@ -16,7 +16,7 @@ function App() {
   const [rooms, setRooms] = React.useState<Array<RoomType>>([]);
 
   React.useEffect(() => {
-    if (JSON.parse(localStorage.getItem('services')!).length > 0 && services.length === 0) {
+    if (localStorage.getItem('services') && JSON.parse(localStorage.getItem('services')!).length > 0 && services.length === 0) {
       const servicesFromLS: Array<ServiceType> = JSON.parse(localStorage.getItem('services')!);
       setServices(servicesFromLS);
     }
@@ -74,6 +74,20 @@ function App() {
     localStorage.setItem('rooms', JSON.stringify(roomsArr));
   }
 
+  const handleDeleteRoom = (deletedRoomId: number) => {
+    const roomsArr: Array<RoomType> = rooms;
+    const newRoomsArr: Array<RoomType> = roomsArr.filter(room => room.id !== deletedRoomId);
+    setRooms(newRoomsArr);
+    localStorage.setItem('rooms', JSON.stringify(newRoomsArr));
+  }
+
+  // const handleAddRoomService = (newRoomService: RoomType): void => {
+  //   const roomsServiceArr = rooms;
+  //   roomsArr.push(newRoom);
+  //   setRooms(roomsArr);
+  //   localStorage.setItem('rooms', JSON.stringify(roomsArr));
+  // }
+
   return (
     <div className='page'>
       <Routes>
@@ -88,7 +102,7 @@ function App() {
         />
         <Route path="/orders" element={orders.length === 0 ? <Navigate to="/" /> : <OrdersList orders={orders} />} />
         <Route path="*" element={<Page404 />} />
-        <Route path='/orders/:orderId' element={<OrderPage handleDeleteOrder={handleDeleteOrder} orders={orders} rooms={rooms} />} />
+        <Route path='/orders/:orderId' element={<OrderPage handleDeleteOrder={handleDeleteOrder} orders={orders} rooms={rooms} handleDeleteRoom={handleDeleteRoom} services={services}/>} />
         <Route path='/room-form/:orderId' element={<RoomForm handleAddRooms={handleAddRooms} />} />
         <Route path='/services' element={<ServicesList handleDeleteService={handleDeleteService} services={services} />} />
       </Routes>

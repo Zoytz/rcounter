@@ -1,9 +1,10 @@
 .order-page {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   gap: 5px;
+  height: 100%;
 }
 
 .order-page__delButton {
@@ -60,5 +61,13 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 5px;
+  flex: 1 0 auto;
+}
+
+.rooms__info {
+  margin: auto;
+  font-size: 15px;
+  color: grey;
 }
