@@ -8,12 +8,14 @@ import OrdersForm, { OrderType } from '../OrdersForm/OrdersForm';
 import OrdersList from '../OrdersList/OrdersList';
 import OrderPage from '../OrderPage/OrderPage';
 import RoomForm, { RoomType } from '../RoomForm/RoomForm';
+import { RoomServiceType } from '../RoomCard/RoomCard';
 
 function App() {
 
   const [services, setServices] = React.useState<Array<ServiceType>>([]);
   const [orders, setOrders] = React.useState<Array<OrderType>>([]);
   const [rooms, setRooms] = React.useState<Array<RoomType>>([]);
+  const [roomsServices, setRoomsServices] = React.useState<Array<RoomServiceType>>([]);
 
   React.useEffect(() => {
     if (localStorage.getItem('services') && JSON.parse(localStorage.getItem('services')!).length > 0 && services.length === 0) {
@@ -23,7 +25,7 @@ function App() {
   }, [services]);
 
   React.useEffect(() => {
-    if (JSON.parse(localStorage.getItem('orders')!).length > 0 && orders.length === 0) {
+    if (localStorage.getItem('orders') && JSON.parse(localStorage.getItem('orders')!).length > 0 && orders.length === 0) {
       const ordersFromLS: Array<OrderType> = JSON.parse(localStorage.getItem('orders')!);
       setOrders(ordersFromLS);
     }
@@ -35,6 +37,13 @@ function App() {
       setRooms(roomsFromLS);
     }
   }, [rooms]);
+
+  React.useEffect(() => {
+    if (localStorage.getItem('roomsServices') && JSON.parse(localStorage.getItem('roomsServices')!).length > 0 && roomsServices.length === 0) {
+      const roomServicesFromLS: Array<RoomServiceType> = JSON.parse(localStorage.getItem('roomsServices')!);
+      setRoomsServices(roomServicesFromLS);
+    }
+  }, [roomsServices]);
 
   const navigate = useNavigate();
 
@@ -81,12 +90,25 @@ function App() {
     localStorage.setItem('rooms', JSON.stringify(newRoomsArr));
   }
 
-  // const handleAddRoomService = (newRoomService: RoomType): void => {
-  //   const roomsServiceArr = rooms;
-  //   roomsArr.push(newRoom);
-  //   setRooms(roomsArr);
-  //   localStorage.setItem('rooms', JSON.stringify(roomsArr));
-  // }
+  const handleAddRoomService = (newRoomService: RoomServiceType): void => {
+    const roomsServicesArr = roomsServices;
+    const existRoomService = roomsServices.find((roomService) => roomService.id === newRoomService.id);
+    if (!existRoomService) {
+      roomsServicesArr.push(newRoomService);
+      setRoomsServices(roomsServicesArr);
+      localStorage.setItem('roomsServices', JSON.stringify(roomsServicesArr));
+    } else {
+      const updatedRoomServicesArr = roomsServicesArr.map((roomsService) => {
+        if(roomsService.id !== newRoomService.id) {
+          return roomsService;
+        } else {
+          return newRoomService;
+        };
+      })
+      setRoomsServices(updatedRoomServicesArr);
+      localStorage.setItem('roomsServices', JSON.stringify(updatedRoomServicesArr));
+    }
+  }
 
   return (
     <div className='page'>
@@ -102,7 +124,19 @@ function App() {
         />
         <Route path="/orders" element={orders.length === 0 ? <Navigate to="/" /> : <OrdersList orders={orders} />} />
         <Route path="*" element={<Page404 />} />
-        <Route path='/orders/:orderId' element={<OrderPage handleDeleteOrder={handleDeleteOrder} orders={orders} rooms={rooms} handleDeleteRoom={handleDeleteRoom} services={services}/>} />
+
+        <Route path='/orders/:orderId'
+          element={<OrderPage
+            handleDeleteOrder={handleDeleteOrder}
+            orders={orders}
+            rooms={rooms}
+            handleDeleteRoom={handleDeleteRoom}
+            services={services}
+            handleAddRoomService={handleAddRoomService}
+            roomsServices={roomsServices}
+          />}
+        />
+
         <Route path='/room-form/:orderId' element={<RoomForm handleAddRooms={handleAddRooms} />} />
         <Route path='/services' element={<ServicesList handleDeleteService={handleDeleteService} services={services} />} />
       </Routes>
