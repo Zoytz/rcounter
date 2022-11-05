@@ -1,4 +1,4 @@
-import { FC, useState, ChangeEvent } from 'react';
+import { FC, useState, ChangeEvent, MouseEvent, MouseEventHandler } from 'react';
 import { RoomType } from '../RoomForm/RoomForm';
 import { ServiceType } from '../ServicesForm/ServicesForm';
 
@@ -8,20 +8,61 @@ type PropsType = {
   roomsServices: Array<RoomServiceType>
   handleDeleteRoom: (param: number) => void
   handleAddRoomService: (param: RoomServiceType) => void
+  handleUpdateRoomServices: (param: RoomServiceType) => void
+  handleDeleteRoomServices: (param: number) => void
 }
 
 export type RoomServiceType = {
   id: number
   roomId: number
+  orderId: number
   cash: number
   value: string
 }
 
-const RoomCard: FC<PropsType> = ({ currentRoom, handleDeleteRoom, services, handleAddRoomService, roomsServices }) => {
+const RoomCard: FC<PropsType> = ({ currentRoom, handleDeleteRoom, services, handleAddRoomService, roomsServices, handleUpdateRoomServices, handleDeleteRoomServices }) => {
 
   const [buttonCounter, setButtonCounter] = useState<number>(0);
 
   const servicesOfThisRoom = roomsServices.filter((roomsService) => roomsService.roomId === currentRoom.id);
+
+  const currentCash: number = servicesOfThisRoom.reduce((prevVal: number, item: RoomServiceType): number => prevVal + Number(item.cash), 0);
+
+  console.log(currentCash)
+
+  const handleUpdateSelect = (event: ChangeEvent<HTMLSelectElement>) => {
+    const select = event.target;
+    const selectValue = select.value;
+    const updatingTheService = servicesOfThisRoom.find((serviceOfThisRoom => serviceOfThisRoom.id === Number(select.getAttribute("id")))) as RoomServiceType;
+    const userService = services.find((service) => service.name === selectValue) as ServiceType;
+
+    let serviceCash = 0;
+
+    switch (userService.dependence) {
+      case 'wallS':
+        serviceCash = currentRoom.roomWallS * userService.price;
+        break;
+      case 'ceilingS':
+        serviceCash = currentRoom.roomCeilingS * userService.price;
+        break;
+      case 'floorS':
+        serviceCash = currentRoom.roomFloorS * userService.price;
+        break;
+      case 'ceilingP':
+        serviceCash = currentRoom.roomCeilingP * userService.price;
+        break;
+      case 'floorP':
+        serviceCash = currentRoom.roomFloorP * userService.price;
+        break;
+      default:
+        alert('Нужно запомнить, что Вы сделали до появления этого окна и рассказать об этом разработчику')
+    }
+
+    updatingTheService.cash = serviceCash;
+    updatingTheService.value = selectValue;
+
+    handleUpdateRoomServices(updatingTheService);
+  }
 
   const handleSelect = (event: ChangeEvent<HTMLSelectElement>) => {
     const select = event.target;
@@ -51,11 +92,19 @@ const RoomCard: FC<PropsType> = ({ currentRoom, handleDeleteRoom, services, hand
         alert('Нужно запомнить, что Вы сделали до появления этого окна и рассказать об этом разработчику')
     }
 
+    selectObj.id = Date.now();
     selectObj.roomId = currentRoom.id;
+    selectObj.orderId = currentRoom.orderId;
     selectObj.cash = serviceCash;
     selectObj.value = selectValue;
 
     handleAddRoomService(selectObj);
+  }
+
+  const handleDeleteSelect = (event: any) => {
+    const button = event.target;
+    const delitedServiceId = Number(button.getAttribute("id"));
+    handleDeleteRoomServices(delitedServiceId);
   }
 
   const handleButtonClick = () => {
@@ -76,15 +125,15 @@ const RoomCard: FC<PropsType> = ({ currentRoom, handleDeleteRoom, services, hand
       <p className="room__info">Площадь стен:<span className="room__span">
         {currentRoom.roomWallS.toFixed(2)} кв./м.</span></p>
       <p className="room__info">Площадь потолка/пола:<span className="room__span">{currentRoom.roomCeilingS.toFixed(2)} кв./м.</span></p>
+      <p className="room__info">Стоимость работ:<span className="room__span">{currentCash.toFixed(2)} руб.</span></p>
       <h3 className="room__subtitle">Услуги:</h3>
 
       {
         servicesOfThisRoom ? servicesOfThisRoom.map((serviceOfThisRoom) => {
-          serviceOfThisRoom.id = Date.now();
           return (
             <label htmlFor="roomServices" className="room__label">
-              <button className='room__servicesDelButton'><span className="room__buttonSpan">x</span></button>
-              <select onChange={handleSelect} name="roomServices" className="room__services">
+              <button onClick={handleDeleteSelect} id={`${serviceOfThisRoom.id}`} className='room__servicesDelButton'><span onClick={handleDeleteSelect} id={`${serviceOfThisRoom.id}`} className="room__buttonSpan">x</span></button>
+              <select id={`${serviceOfThisRoom.id}`} key={serviceOfThisRoom.id} onChange={handleUpdateSelect} name="roomServices" className="room__services">
                 <option value={serviceOfThisRoom.value} className="room__service">{serviceOfThisRoom.value}</option>
                 {
                   services.map((service) => {

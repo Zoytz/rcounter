@@ -13,9 +13,11 @@ type PropsType = {
   handleDeleteOrder: (param: number) => void
   handleDeleteRoom: (param: number) => void
   handleAddRoomService: (param: RoomServiceType) => void
+  handleUpdateRoomServices: (param: RoomServiceType) => void
+  handleDeleteRoomServices: (param: number) => void
 }
 
-const OrderPage: FC<PropsType> = ({ orders, handleDeleteOrder, rooms, handleDeleteRoom, services, handleAddRoomService, roomsServices }) => {
+const OrderPage: FC<PropsType> = ({ orders, handleDeleteOrder, rooms, handleDeleteRoom, services, handleAddRoomService, roomsServices, handleUpdateRoomServices, handleDeleteRoomServices }) => {
 
   const navigate = useNavigate();
 
@@ -58,6 +60,8 @@ const OrderPage: FC<PropsType> = ({ orders, handleDeleteOrder, rooms, handleDele
                   services={services}
                   handleAddRoomService={handleAddRoomService}
                   roomsServices={roomsServices}
+                  handleUpdateRoomServices={handleUpdateRoomServices}
+                  handleDeleteRoomServices={handleDeleteRoomServices}
                 />
               )
             }) : <p className="rooms__info">Пока нет помещений</p>

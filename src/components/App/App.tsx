@@ -92,22 +92,29 @@ function App() {
 
   const handleAddRoomService = (newRoomService: RoomServiceType): void => {
     const roomsServicesArr = roomsServices;
-    const existRoomService = roomsServices.find((roomService) => roomService.id === newRoomService.id);
-    if (!existRoomService) {
-      roomsServicesArr.push(newRoomService);
-      setRoomsServices(roomsServicesArr);
-      localStorage.setItem('roomsServices', JSON.stringify(roomsServicesArr));
-    } else {
-      const updatedRoomServicesArr = roomsServicesArr.map((roomsService) => {
-        if(roomsService.id !== newRoomService.id) {
-          return roomsService;
-        } else {
-          return newRoomService;
-        };
-      })
-      setRoomsServices(updatedRoomServicesArr);
-      localStorage.setItem('roomsServices', JSON.stringify(updatedRoomServicesArr));
-    }
+    roomsServicesArr.push(newRoomService);
+    setRoomsServices(roomsServicesArr);
+    localStorage.setItem('roomsServices', JSON.stringify(roomsServicesArr));
+  }
+
+  const handleUpdateRoomServices = (updatedRoomService: RoomServiceType): void => {
+    const roomsServicesArr = roomsServices;
+    const updatedRoomServicesArr = roomsServicesArr.map((roomsService) => {
+      if (roomsService.id !== updatedRoomService.id) {
+        return roomsService;
+      } else {
+        return updatedRoomService;
+      };
+    })
+    setRoomsServices(updatedRoomServicesArr);
+    localStorage.setItem('roomsServices', JSON.stringify(updatedRoomServicesArr));
+  }
+
+  const handleDeleteRoomServices = (deletedServiceId: number): void => {
+    const roomsServicesArr = roomsServices;
+    const updatedRoomServicesArr = roomsServicesArr.filter((roomsService) => roomsService.id !== deletedServiceId);
+    setRoomsServices(updatedRoomServicesArr);
+    localStorage.setItem('roomsServices', JSON.stringify(updatedRoomServicesArr));
   }
 
   return (
@@ -134,6 +141,8 @@ function App() {
             services={services}
             handleAddRoomService={handleAddRoomService}
             roomsServices={roomsServices}
+            handleUpdateRoomServices={handleUpdateRoomServices}
+            handleDeleteRoomServices={handleDeleteRoomServices}
           />}
         />
 
