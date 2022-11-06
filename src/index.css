@@ -59,3 +59,7 @@
 /* Header */
 
 @import url(../src/components/Header/Header.css);
+
+/* Modal */
+
+@import url(../src/components/Modal/Modal.css);

@@ -10,6 +10,7 @@ import OrderPage from '../OrderPage/OrderPage';
 import RoomForm, { RoomType } from '../RoomForm/RoomForm';
 import { RoomServiceType } from '../RoomCard/RoomCard';
 import Header from '../Header/Header';
+import Modal from '../Modal/Modal';
 
 function App() {
 
@@ -128,6 +129,8 @@ function App() {
   }
 
   return (
+    <>
+    <Modal />
     <div className='page'>
       <Header />
       <Routes>
@@ -161,6 +164,7 @@ function App() {
         <Route path='/services' element={<ServicesList handleDeleteService={handleDeleteService} services={services} />} />
       </Routes>
     </div>
+    </>
   )
 }
 
