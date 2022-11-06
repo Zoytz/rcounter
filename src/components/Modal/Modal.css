@@ -6,7 +6,7 @@
   bottom: 0;
   background-color: rgba(0, 0, 0, .4);
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
   font-family: 'Arial Black', Helvetica, sans-serif;
   box-sizing: border-box;
@@ -41,9 +41,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 30px;
   height: 100%;
   width: 100%;
+}
+
+.menu__item {
+  width: 100%;
+  text-align: center;
 }
 
 .menu__link {

@@ -18,6 +18,7 @@ function App() {
   const [orders, setOrders] = React.useState<Array<OrderType>>([]);
   const [rooms, setRooms] = React.useState<Array<RoomType>>([]);
   const [roomsServices, setRoomsServices] = React.useState<Array<RoomServiceType>>([]);
+  const [isMenuOpen, setIsMenuOpen] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     if (localStorage.getItem('services') && JSON.parse(localStorage.getItem('services')!).length > 0 && services.length === 0) {
@@ -128,11 +129,19 @@ function App() {
     localStorage.setItem('roomsServices', JSON.stringify(updatedRoomServicesArr));
   }
 
+  const handleOpenMenu = () => {
+    setIsMenuOpen(true);
+  }
+
+  const handleClosePopup = () => {
+    setIsMenuOpen(false);
+  }
+
   return (
     <>
-    <Modal />
+    <Modal onClose={handleClosePopup} isMenuOpen={isMenuOpen} handleClosePopup={handleClosePopup}/>
     <div className='page'>
-      <Header />
+      <Header handleOpenMenu={handleOpenMenu} />
       <Routes>
         <Route path='/' element={orders.length !== 0 ? <Navigate to="/orders" /> : <StartScreen />} />
         <Route path="/add-services" element={
