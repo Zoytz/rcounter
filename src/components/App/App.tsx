@@ -73,15 +73,20 @@ function App() {
   }
 
   const handleDeleteOrder = (delitedOrderId: number): void => {
-    const ordersArr: Array<OrderType> = orders;
-    const newOrdersArr: Array<OrderType> = ordersArr.filter(order => order.id !== delitedOrderId);
-    setOrders(newOrdersArr);
-    localStorage.setItem('orders', JSON.stringify(newOrdersArr));
+    const roomsServicesArr: Array<RoomServiceType> = roomsServices;
+    const newRoomsServicesArr = roomsServicesArr.filter((roomsService) => roomsService.orderId !== delitedOrderId);
+    setRoomsServices(newRoomsServicesArr);
+    localStorage.setItem('roomsServices', JSON.stringify(newRoomsServicesArr))
 
     const roomsArr: Array<RoomType> = rooms;
     const newRoomsArr = roomsArr.filter((room) => room.orderId !== Number(delitedOrderId));
     setRooms(newRoomsArr);
     localStorage.setItem('rooms', JSON.stringify(newRoomsArr));
+
+    const ordersArr: Array<OrderType> = orders;
+    const newOrdersArr: Array<OrderType> = ordersArr.filter(order => order.id !== delitedOrderId);
+    setOrders(newOrdersArr);
+    localStorage.setItem('orders', JSON.stringify(newOrdersArr));
   }
 
   const handleAddRooms = (newRoom: RoomType): void => {

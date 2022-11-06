@@ -50,7 +50,7 @@ const OrderPage: FC<PropsType> = ({ orders, handleDeleteOrder, rooms, handleDele
       <p className="order-page__text">Номер телефона: <a href={`tel: ${currentOrder?.customerTel}`} className="order-page__link page__link">{currentOrder?.customerTel}</a></p>
       <p className="order-page__text">Общая сумма: <span className="order-page__span">
       {orderCash.toFixed(0)} руб.</span></p>
-      <h2 className="order-page__title">Помещения и услуги:</h2>
+      {/* <h2 className="order-page__title">Помещения и услуги:</h2> */}
       <Link to={`/room-form/${orderId}`} className="order-page__addRoomButton page__link" aria-label='Кнопка добавления помещения'>Добавить помещение</Link>
       <ul className="rooms page__list">
         {

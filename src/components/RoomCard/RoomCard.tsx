@@ -99,6 +99,8 @@ const RoomCard: FC<PropsType> = ({ currentRoom, handleDeleteRoom, services, hand
     selectObj.cash = serviceCash;
     selectObj.value = selectValue;
 
+    console.log(currentRoom.orderId)
+
     handleAddRoomService(selectObj);
     navigate(`/orders/${currentRoom.orderId}`)
   }
@@ -133,7 +135,7 @@ const RoomCard: FC<PropsType> = ({ currentRoom, handleDeleteRoom, services, hand
       {
         servicesOfThisRoom ? [...servicesOfThisRoom].reverse().map((serviceOfThisRoom) => {
           return (
-            <label htmlFor="roomServices" className="room__label">
+            <label key={serviceOfThisRoom.id} htmlFor="roomServices" className="room__label">
               <button onClick={handleDeleteSelect} id={`${serviceOfThisRoom.id}`} className='room__servicesDelButton'></button>
               <select id={`${serviceOfThisRoom.id}`} key={serviceOfThisRoom.id} onChange={handleUpdateSelect} name="roomServices" className="room__services">
                 <option value={serviceOfThisRoom.value} className="room__service">{serviceOfThisRoom.value}</option>
