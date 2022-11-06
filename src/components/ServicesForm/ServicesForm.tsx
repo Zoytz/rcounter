@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC } from 'react';
+import { ChangeEvent, FC } from 'react';
 import Form from '../Form/Form';
 import FormInput from '../FormInput/FormInput';
 import FormButton from '../FormButton/FormButton';
@@ -32,7 +32,7 @@ const ServicesForm: FC<PropsType> = ({ handleServicesFormSubmit }) => {
     serviceObj.dependence = dependence;
     handleServicesFormSubmit(serviceObj);
     resetForm();
-    navigate('/services');
+    navigate('/rcounter/services');
   }
 
   return (
@@ -51,7 +51,7 @@ const ServicesForm: FC<PropsType> = ({ handleServicesFormSubmit }) => {
         </select>
       </label>
       <FormButton isFormValid={isFormValid} name='services-button' buttonText='Сохранить услугу' />
-      <Link to='/services' className='services__link page__link'>К списку услуг</Link>
+      <Link to='/rcounter/services' className='services__link page__link'>К списку услуг</Link>
     </Form>
   )
 }

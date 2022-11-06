@@ -19,7 +19,7 @@ const OrderCard: FC<PropsType> = ({ order }) => {
       </h3>
       <div className="order__buttons">
         <a href={`tel: ${order.customerTel}`} className="order__button">Позвонить</a>
-        <Link className="order__button" to={`/orders/${order.id}`}>Подробнее</ Link>
+        <Link className="order__button" to={`/rcounter/orders/${order.id}`}>Подробнее</ Link>
       </div>
     </li>
   )

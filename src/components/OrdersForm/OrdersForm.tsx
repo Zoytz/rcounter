@@ -42,7 +42,7 @@ const OrdersForm: FC<PropsType> = ({ handleOrdersFormSubmit }) => {
 
     handleOrdersFormSubmit(orderObj);
     resetForm();
-    navigate('/');
+    navigate('/rcounter');
   }
 
   return (

@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, ChangeEvent } from 'react';
+import { FC, ReactNode } from 'react';
 
 type PropsType = {
   handleSubmit: (param: any) => void

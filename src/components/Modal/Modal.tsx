@@ -31,16 +31,16 @@ const Modal: FC<PropsType> = ({ isMenuOpen, handleClosePopup }) => {
           </button>
           <ul className="menu__items page__list">
             <li className="menu__item">
-              <Link onClick={handleClosePopup} to="/orders" className='menu__link page__link'>Заказы</Link>
+              <Link onClick={handleClosePopup} to="/rcounter/orders" className='menu__link page__link'>Заказы</Link>
             </li>
             <li className="menu__item">
-              <Link onClick={handleClosePopup} to="/services" className='menu__link page__link'>Услуги</Link>
+              <Link onClick={handleClosePopup} to="/rcounter/services" className='menu__link page__link'>Услуги</Link>
             </li>
             <li className="menu__item">
-              <Link onClick={handleClosePopup} to="/add-orders" className='menu__link page__link'>Создать заказ</Link>
+              <Link onClick={handleClosePopup} to="/rcounter/add-orders" className='menu__link page__link'>Создать заказ</Link>
             </li>
             <li className="menu__item">
-              <Link onClick={handleClosePopup} to="/add-services" className='menu__link page__link'>Создать услугу</Link>
+              <Link onClick={handleClosePopup} to="/rcounter/add-services" className='menu__link page__link'>Создать услугу</Link>
             </li>
           </ul>
         </nav>

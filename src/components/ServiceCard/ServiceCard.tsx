@@ -1,5 +1,4 @@
-import React, { FC, ReactNode, ChangeEvent, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { FC, useState } from 'react';
 import { ServiceType } from '../ServicesForm/ServicesForm';
 
 type PropsType = {

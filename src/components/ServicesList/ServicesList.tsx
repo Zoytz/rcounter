@@ -20,8 +20,8 @@ const ServicesList: FC<PropsType> = ({ services, handleDeleteService }) => {
           })
         }
       </ul>
-      <Link to='/orders' className="services__navLink page__link">К заказам</Link>
-      <Link to='/add-services' className="services__button page__link">+</Link>
+      <Link to='/rcounter/orders' className="services__navLink page__link">К заказам</Link>
+      <Link to='/rcounter/add-services' className="services__button page__link">+</Link>
     </>
   )
 }

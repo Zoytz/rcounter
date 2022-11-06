@@ -148,19 +148,19 @@ function App() {
     <div className='page'>
       <Header handleOpenMenu={handleOpenMenu} />
       <Routes>
-        <Route path='/' element={orders.length !== 0 ? <Navigate to="/orders" /> : <StartScreen />} />
-        <Route path="/add-services" element={
+        <Route path='/rcounter' element={orders.length !== 0 ? <Navigate to="/rcounter/orders" /> : <StartScreen />} />
+        <Route path="/rcounter/add-services" element={
           <ServicesForm
             handleServicesFormSubmit={handleServicesFormSubmit}
           />}
         />
-        <Route path="/add-orders" element={
+        <Route path="/rcounter/add-orders" element={
           <OrdersForm handleOrdersFormSubmit={handleOrdersFormSubmit} />}
         />
-        <Route path="/orders" element={orders.length === 0 ? <Navigate to="/" /> : <OrdersList orders={orders} />} />
+        <Route path="/rcounter/orders" element={orders.length === 0 ? <Navigate to="/rcounter" /> : <OrdersList orders={orders} />} />
         <Route path="*" element={<Page404 />} />
 
-        <Route path='/orders/:orderId'
+        <Route path='/rcounter/orders/:orderId'
           element={<OrderPage
             handleDeleteOrder={handleDeleteOrder}
             orders={orders}
@@ -174,8 +174,8 @@ function App() {
           />}
         />
 
-        <Route path='/room-form/:orderId' element={<RoomForm handleAddRooms={handleAddRooms} />} />
-        <Route path='/services' element={<ServicesList handleDeleteService={handleDeleteService} services={services} />} />
+        <Route path='/rcounter/room-form/:orderId' element={<RoomForm handleAddRooms={handleAddRooms} />} />
+        <Route path='/rcounter/services' element={<ServicesList handleDeleteService={handleDeleteService} services={services} />} />
       </Routes>
     </div>
     </>
