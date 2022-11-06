@@ -39,6 +39,8 @@ const OrderPage: FC<PropsType> = ({ orders, handleDeleteOrder, rooms, handleDele
     }
   }
 
+  const orderCash = roomsServices.filter((roomService) => roomService.orderId === Number(orderId)).reduce((prev, item) => prev + item.cash, 0);
+
   return (
     <div className="order-page">
       <button onClick={handleButtonClick} className={`order-page__delButton ${buttonCounter === 1 ? 'order-page__delButton_type_warning' : ''}`} aria-label='Кнопка удаления заказа'>Удалить</button>
@@ -46,6 +48,8 @@ const OrderPage: FC<PropsType> = ({ orders, handleDeleteOrder, rooms, handleDele
       <p className="order-page__text">Дом/квартира: <span className="order-page__span">{`д.${currentOrder?.houseNumber}, кв.${currentOrder?.apartmentNumber}`}</span></p>
       <p className="order-page__text">Заказчик: <span className="order-page__span">{currentOrder?.customer}</span></p>
       <p className="order-page__text">Номер телефона: <a href={`tel: ${currentOrder?.customerTel}`} className="order-page__link page__link">{currentOrder?.customerTel}</a></p>
+      <p className="order-page__text">Общая сумма: <span className="order-page__span">
+      {orderCash.toFixed(0)} руб.</span></p>
       <h2 className="order-page__title">Помещения и услуги:</h2>
       <Link to={`/room-form/${orderId}`} className="order-page__addRoomButton page__link" aria-label='Кнопка добавления помещения'>Добавить помещение</Link>
       <ul className="rooms page__list">

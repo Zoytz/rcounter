@@ -24,8 +24,7 @@
 }
 
 .service__button_type_warning {
-  background-color: red;
-  color: #000;
+  background: linear-gradient(45deg, red, white 80%)
 }
 
 .service__span {

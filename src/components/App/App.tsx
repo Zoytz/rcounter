@@ -9,6 +9,7 @@ import OrdersList from '../OrdersList/OrdersList';
 import OrderPage from '../OrderPage/OrderPage';
 import RoomForm, { RoomType } from '../RoomForm/RoomForm';
 import { RoomServiceType } from '../RoomCard/RoomCard';
+import Header from '../Header/Header';
 
 function App() {
 
@@ -74,6 +75,11 @@ function App() {
     const newOrdersArr: Array<OrderType> = ordersArr.filter(order => order.id !== delitedOrderId);
     setOrders(newOrdersArr);
     localStorage.setItem('orders', JSON.stringify(newOrdersArr));
+
+    const roomsArr: Array<RoomType> = rooms;
+    const newRoomsArr = roomsArr.filter((room) => room.orderId !== Number(delitedOrderId));
+    setRooms(newRoomsArr);
+    localStorage.setItem('rooms', JSON.stringify(newRoomsArr));
   }
 
   const handleAddRooms = (newRoom: RoomType): void => {
@@ -88,6 +94,10 @@ function App() {
     const newRoomsArr: Array<RoomType> = roomsArr.filter(room => room.id !== deletedRoomId);
     setRooms(newRoomsArr);
     localStorage.setItem('rooms', JSON.stringify(newRoomsArr));
+    const roomsServicesArr: Array<RoomServiceType> = roomsServices;
+    const newRoomsServicesArr = roomsServicesArr.filter((roomsService) => roomsService.roomId !== deletedRoomId);
+    setRoomsServices(newRoomsServicesArr);
+    localStorage.setItem('roomsServices', JSON.stringify(newRoomsServicesArr))
   }
 
   const handleAddRoomService = (newRoomService: RoomServiceType): void => {
@@ -119,6 +129,7 @@ function App() {
 
   return (
     <div className='page'>
+      <Header />
       <Routes>
         <Route path='/' element={orders.length !== 0 ? <Navigate to="/orders" /> : <StartScreen />} />
         <Route path="/add-services" element={

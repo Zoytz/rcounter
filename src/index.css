@@ -55,3 +55,7 @@
 /* RoomCard */
 
 @import url(../src/components/RoomCard/RoomCard.css);
+
+/* Header */
+
+@import url(../src/components/Header/Header.css);

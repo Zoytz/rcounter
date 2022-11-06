@@ -1,4 +1,5 @@
 import { FC, useState, ChangeEvent, MouseEvent, MouseEventHandler } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { RoomType } from '../RoomForm/RoomForm';
 import { ServiceType } from '../ServicesForm/ServicesForm';
 
@@ -28,7 +29,7 @@ const RoomCard: FC<PropsType> = ({ currentRoom, handleDeleteRoom, services, hand
 
   const currentCash: number = servicesOfThisRoom.reduce((prevVal: number, item: RoomServiceType): number => prevVal + Number(item.cash), 0);
 
-  console.log(currentCash)
+  const navigate = useNavigate();
 
   const handleUpdateSelect = (event: ChangeEvent<HTMLSelectElement>) => {
     const select = event.target;
@@ -99,6 +100,7 @@ const RoomCard: FC<PropsType> = ({ currentRoom, handleDeleteRoom, services, hand
     selectObj.value = selectValue;
 
     handleAddRoomService(selectObj);
+    navigate(`/orders/${currentRoom.orderId}`)
   }
 
   const handleDeleteSelect = (event: any) => {
@@ -125,14 +127,14 @@ const RoomCard: FC<PropsType> = ({ currentRoom, handleDeleteRoom, services, hand
       <p className="room__info">Площадь стен:<span className="room__span">
         {currentRoom.roomWallS.toFixed(2)} кв./м.</span></p>
       <p className="room__info">Площадь потолка/пола:<span className="room__span">{currentRoom.roomCeilingS.toFixed(2)} кв./м.</span></p>
-      <p className="room__info">Стоимость работ:<span className="room__span">{currentCash.toFixed(2)} руб.</span></p>
+      <p className="room__info">Стоимость работ:<span className="room__span">{currentCash.toFixed(0)} руб.</span></p>
       <h3 className="room__subtitle">Услуги:</h3>
 
       {
-        servicesOfThisRoom ? servicesOfThisRoom.map((serviceOfThisRoom) => {
+        servicesOfThisRoom ? [...servicesOfThisRoom].reverse().map((serviceOfThisRoom) => {
           return (
             <label htmlFor="roomServices" className="room__label">
-              <button onClick={handleDeleteSelect} id={`${serviceOfThisRoom.id}`} className='room__servicesDelButton'><span onClick={handleDeleteSelect} id={`${serviceOfThisRoom.id}`} className="room__buttonSpan">x</span></button>
+              <button onClick={handleDeleteSelect} id={`${serviceOfThisRoom.id}`} className='room__servicesDelButton'></button>
               <select id={`${serviceOfThisRoom.id}`} key={serviceOfThisRoom.id} onChange={handleUpdateSelect} name="roomServices" className="room__services">
                 <option value={serviceOfThisRoom.value} className="room__service">{serviceOfThisRoom.value}</option>
                 {
@@ -141,6 +143,7 @@ const RoomCard: FC<PropsType> = ({ currentRoom, handleDeleteRoom, services, hand
                   })
                 }
               </select>
+              <p className='room__cash'>{serviceOfThisRoom.cash.toFixed(0)}</p>
             </label>
           )
         }) : null

@@ -1,0 +1,28 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 5px;
+}
+
+.header__button {
+  padding: 0;
+  width: 30px;
+  border: none;
+  background-color: #fff;
+  height: 30px;
+  margin-right: 15px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-image: url(../../images/Hamburger_icon.png);
+}
+
+.header__button-span_active {
+  background-image: url(../../images/close.png);
+}

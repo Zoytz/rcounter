@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, ChangeEvent } from 'react';
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import ServiceCard from '../ServiceCard/ServiceCard';
 import { ServiceType } from '../ServicesForm/ServicesForm';
@@ -20,6 +20,7 @@ const ServicesList: FC<PropsType> = ({ services, handleDeleteService }) => {
           })
         }
       </ul>
+      <Link to='/orders' className="services__navLink page__link">К заказам</Link>
       <Link to='/add-services' className="services__button page__link">+</Link>
     </>
   )

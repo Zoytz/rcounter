@@ -20,3 +20,9 @@
   padding: 5px 15px;
   width: 60%;
 }
+
+.start-screen__info {
+  margin: 0;
+  text-align: center;
+  color: grey;
+}
