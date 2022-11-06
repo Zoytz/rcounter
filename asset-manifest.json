@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/rcounter/static/css/main.4f163e30.css",
+    "main.js": "/rcounter/static/js/main.c19fedbf.js",
+    "index.html": "/rcounter/index.html",
+    "main.4f163e30.css.map": "/rcounter/static/css/main.4f163e30.css.map",
+    "main.c19fedbf.js.map": "/rcounter/static/js/main.c19fedbf.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4f163e30.css",
+    "static/js/main.c19fedbf.js"
+  ]
+}
