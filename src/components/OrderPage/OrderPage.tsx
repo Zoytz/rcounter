@@ -44,7 +44,7 @@ const OrderPage: FC<PropsType> = ({ orders, handleDeleteOrder, rooms, handleDele
   return (
     <div className="order-page">
       <button onClick={handleButtonClick} className={`order-page__delButton ${buttonCounter === 1 ? 'order-page__delButton_type_warning' : ''}`} aria-label='Кнопка удаления заказа'>Удалить</button>
-      <p className="order-page__text">Город/Улица: <span className="order-page__span">{currentOrder?.city}{currentOrder?.street}</span></p>
+      <p className="order-page__text">Город/Улица: <span className="order-page__span">{currentOrder?.city} {currentOrder?.street}</span></p>
       <p className="order-page__text">Дом/квартира: <span className="order-page__span">{`д.${currentOrder?.houseNumber}, кв.${currentOrder?.apartmentNumber}`}</span></p>
       <p className="order-page__text">Заказчик: <span className="order-page__span">{currentOrder?.customer}</span></p>
       <p className="order-page__text">Номер телефона: <a href={`tel: ${currentOrder?.customerTel}`} className="order-page__link page__link">{currentOrder?.customerTel}</a></p>

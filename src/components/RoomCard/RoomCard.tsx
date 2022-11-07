@@ -99,8 +99,6 @@ const RoomCard: FC<PropsType> = ({ currentRoom, handleDeleteRoom, services, hand
     selectObj.cash = serviceCash;
     selectObj.value = selectValue;
 
-    console.log(currentRoom.orderId)
-
     handleAddRoomService(selectObj);
     navigate(`/rcounter/orders/${currentRoom.orderId}`)
   }

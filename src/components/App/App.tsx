@@ -87,6 +87,20 @@ function App() {
     const newOrdersArr: Array<OrderType> = ordersArr.filter(order => order.id !== delitedOrderId);
     setOrders(newOrdersArr);
     localStorage.setItem('orders', JSON.stringify(newOrdersArr));
+    handleSaveDeletedOrder(delitedOrderId);
+  }
+
+  const handleSaveDeletedOrder = (id: number) => {
+    const deletedOrder = orders.find((order) => order.id === id);
+    const deletedOrderRooms = rooms.filter((room) => room.orderId === id);
+    deletedOrderRooms.forEach((deletedOrderRoom) => handleSaveDeletedRoom(deletedOrderRoom.id));
+    if(localStorage.getItem('deletedOrders')) {
+      const deletedOrdersArr = JSON.parse(localStorage.getItem('deletedOrders')!);
+      deletedOrdersArr.push(deletedOrder);
+      localStorage.setItem('deletedOrders', JSON.stringify(deletedOrdersArr));
+    } else {
+      localStorage.setItem('deletedOrders', JSON.stringify([deletedOrder]));
+    }
   }
 
   const handleAddRooms = (newRoom: RoomType): void => {
@@ -104,7 +118,21 @@ function App() {
     const roomsServicesArr: Array<RoomServiceType> = roomsServices;
     const newRoomsServicesArr = roomsServicesArr.filter((roomsService) => roomsService.roomId !== deletedRoomId);
     setRoomsServices(newRoomsServicesArr);
-    localStorage.setItem('roomsServices', JSON.stringify(newRoomsServicesArr))
+    localStorage.setItem('roomsServices', JSON.stringify(newRoomsServicesArr));
+    handleSaveDeletedRoom(deletedRoomId);
+  }
+
+  const handleSaveDeletedRoom = (id: number) => {
+    const deletedRoom = rooms.find((room) => room.id === id);
+    const deletedRoomServices = roomsServices.filter((roomsService) => roomsService.roomId === id);
+    deletedRoomServices.forEach((deledRoomService) => handleSaveDeletedRoomServices(deledRoomService.id));
+    if(localStorage.getItem('deletedRooms')) {
+      const deletedRoomsArr = JSON.parse(localStorage.getItem('deletedRooms')!);
+      deletedRoomsArr.push(deletedRoom);
+      localStorage.setItem('deletedRooms', JSON.stringify(deletedRoomsArr));
+    } else {
+      localStorage.setItem('deletedRooms', JSON.stringify([deletedRoom]));
+    }
   }
 
   const handleAddRoomService = (newRoomService: RoomServiceType): void => {
@@ -132,6 +160,18 @@ function App() {
     const updatedRoomServicesArr = roomsServicesArr.filter((roomsService) => roomsService.id !== deletedServiceId);
     setRoomsServices(updatedRoomServicesArr);
     localStorage.setItem('roomsServices', JSON.stringify(updatedRoomServicesArr));
+    handleSaveDeletedRoomServices(deletedServiceId);
+  }
+
+  const handleSaveDeletedRoomServices = (id: number) => {
+    const delitedService = roomsServices.find((roomsSercice) => roomsSercice.id === id);
+    if(localStorage.getItem('deletedRoomsServices')) {
+      const updatedDeletedRoomsServices = JSON.parse(localStorage.getItem('deletedRoomsServices')!);
+      updatedDeletedRoomsServices.push(delitedService);
+      localStorage.setItem('deletedRoomsServices', JSON.stringify(updatedDeletedRoomsServices));
+    } else {
+      localStorage.setItem('deletedRoomsServices', JSON.stringify([delitedService]));
+    }
   }
 
   const handleOpenMenu = () => {
