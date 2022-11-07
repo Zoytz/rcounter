@@ -55,7 +55,7 @@ const OrderPage: FC<PropsType> = ({ orders, handleDeleteOrder, rooms, handleDele
       <ul className="rooms page__list">
         {
           currentRooms.length !== 0 ?
-            currentRooms.map((currentRoom: RoomType) => {
+            [...currentRooms].reverse().map((currentRoom: RoomType) => {
               return (
                 <RoomCard
                   key={currentRoom.id}

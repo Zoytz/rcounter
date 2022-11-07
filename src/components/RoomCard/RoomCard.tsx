@@ -1,4 +1,4 @@
-import { FC, useState, ChangeEvent, MouseEvent, MouseEventHandler } from 'react';
+import { FC, useState, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { RoomType } from '../RoomForm/RoomForm';
 import { ServiceType } from '../ServicesForm/ServicesForm';

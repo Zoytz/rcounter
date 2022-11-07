@@ -13,7 +13,7 @@
   border-radius: 100%;
   font-size: 45px;
   color: #fff;
-  position: fixed;
+  position: absolute;
   bottom: 20px;
   right: 20px;
   text-align: center;
