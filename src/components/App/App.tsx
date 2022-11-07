@@ -87,20 +87,25 @@ function App() {
     const newOrdersArr: Array<OrderType> = ordersArr.filter(order => order.id !== delitedOrderId);
     setOrders(newOrdersArr);
     localStorage.setItem('orders', JSON.stringify(newOrdersArr));
-    handleSaveDeletedOrder(delitedOrderId);
-  }
 
-  const handleSaveDeletedOrder = (id: number) => {
-    const deletedOrder = orders.find((order) => order.id === id);
-    const deletedOrderRooms = rooms.filter((room) => room.orderId === id);
-    deletedOrderRooms.forEach((deletedOrderRoom) => handleSaveDeletedRoom(deletedOrderRoom.id));
-    if(localStorage.getItem('deletedOrders')) {
-      const deletedOrdersArr = JSON.parse(localStorage.getItem('deletedOrders')!);
-      deletedOrdersArr.push(deletedOrder);
-      localStorage.setItem('deletedOrders', JSON.stringify(deletedOrdersArr));
-    } else {
-      localStorage.setItem('deletedOrders', JSON.stringify([deletedOrder]));
-    }
+    /* deleted */
+
+    /* services */
+
+    const deletedRoomsServicesArr = roomsServicesArr.filter((roomsService) => roomsService.orderId === delitedOrderId);
+    const deletedRoomsServicesArrFromLS = JSON.parse(localStorage.getItem('deletedRoomsServices')!);
+    localStorage.setItem('deletedRoomsServices', JSON.stringify([...deletedRoomsServicesArrFromLS, ...deletedRoomsServicesArr]));
+
+    /* rooms */
+
+    const deletedRoomsArr = roomsArr.filter((room) => room.orderId === Number(delitedOrderId));
+    const deletedRoomsArrFromLS = JSON.parse(localStorage.getItem('deletedRooms')!);
+    localStorage.setItem('deletedRooms', JSON.stringify([...deletedRoomsArrFromLS, ...deletedRoomsArr]));
+
+    /* order */
+    const deletedOrder = orders.find((order) => order.id === delitedOrderId);
+    const deletedOrdersFromLS = JSON.parse(localStorage.getItem('deletedOrders')!);
+    localStorage.setItem('deletedOrders', JSON.stringify([...deletedOrdersFromLS, deletedOrder]));
   }
 
   const handleAddRooms = (newRoom: RoomType): void => {
@@ -115,24 +120,15 @@ function App() {
     const newRoomsArr: Array<RoomType> = roomsArr.filter(room => room.id !== deletedRoomId);
     setRooms(newRoomsArr);
     localStorage.setItem('rooms', JSON.stringify(newRoomsArr));
-    const roomsServicesArr: Array<RoomServiceType> = roomsServices;
-    const newRoomsServicesArr = roomsServicesArr.filter((roomsService) => roomsService.roomId !== deletedRoomId);
-    setRoomsServices(newRoomsServicesArr);
-    localStorage.setItem('roomsServices', JSON.stringify(newRoomsServicesArr));
-    handleSaveDeletedRoom(deletedRoomId);
-  }
 
-  const handleSaveDeletedRoom = (id: number) => {
-    const deletedRoom = rooms.find((room) => room.id === id);
-    const deletedRoomServices = roomsServices.filter((roomsService) => roomsService.roomId === id);
-    deletedRoomServices.forEach((deledRoomService) => handleSaveDeletedRoomServices(deledRoomService.id));
-    if(localStorage.getItem('deletedRooms')) {
-      const deletedRoomsArr = JSON.parse(localStorage.getItem('deletedRooms')!);
-      deletedRoomsArr.push(deletedRoom);
-      localStorage.setItem('deletedRooms', JSON.stringify(deletedRoomsArr));
-    } else {
-      localStorage.setItem('deletedRooms', JSON.stringify([deletedRoom]));
-    }
+    const roomsServicesArr: Array<RoomServiceType> = roomsServices;
+    const updatedRoomsServicesArr = roomsServicesArr.filter((roomsService) => roomsService.roomId !== deletedRoomId);
+    setRoomsServices(updatedRoomsServicesArr);
+    localStorage.setItem('roomsServices', JSON.stringify(updatedRoomsServicesArr));
+
+    const deletedRoomsServicesArr = roomsServicesArr.filter((roomsService) => roomsService.roomId === deletedRoomId);
+    const deletedRoomsServicesArrFromLS = JSON.parse(localStorage.getItem('deletedRoomsServices')!);
+    localStorage.setItem('deletedRoomsServices', JSON.stringify([...deletedRoomsServicesArrFromLS, ...deletedRoomsServicesArr]));
   }
 
   const handleAddRoomService = (newRoomService: RoomServiceType): void => {
