@@ -116,7 +116,7 @@ function App() {
     if(deletedOrdersFromLS) {
       localStorage.setItem('deletedOrders', JSON.stringify([...deletedOrdersFromLS, deletedOrder]));
     } else {
-      localStorage.setItem('deletedOrders', JSON.stringify(deletedOrder));
+      localStorage.setItem('deletedOrders', JSON.stringify([deletedOrder]));
     }
   }
 
