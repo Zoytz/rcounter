@@ -94,18 +94,30 @@ function App() {
 
     const deletedRoomsServicesArr = roomsServicesArr.filter((roomsService) => roomsService.orderId === delitedOrderId);
     const deletedRoomsServicesArrFromLS = JSON.parse(localStorage.getItem('deletedRoomsServices')!);
-    localStorage.setItem('deletedRoomsServices', JSON.stringify([...deletedRoomsServicesArrFromLS, ...deletedRoomsServicesArr]));
+    if(deletedRoomsServicesArrFromLS) {
+      localStorage.setItem('deletedRoomsServices', JSON.stringify([...deletedRoomsServicesArrFromLS, ...deletedRoomsServicesArr]));
+    } else {
+      localStorage.setItem('deletedRoomsServices', JSON.stringify(deletedRoomsServicesArr));
+    }
 
     /* rooms */
 
     const deletedRoomsArr = roomsArr.filter((room) => room.orderId === Number(delitedOrderId));
     const deletedRoomsArrFromLS = JSON.parse(localStorage.getItem('deletedRooms')!);
-    localStorage.setItem('deletedRooms', JSON.stringify([...deletedRoomsArrFromLS, ...deletedRoomsArr]));
+    if(deletedRoomsArrFromLS) {
+      localStorage.setItem('deletedRooms', JSON.stringify([...deletedRoomsArrFromLS, ...deletedRoomsArr]));
+    } else {
+      localStorage.setItem('deletedRooms', JSON.stringify(deletedRoomsArr));
+    }
 
     /* order */
     const deletedOrder = orders.find((order) => order.id === delitedOrderId);
     const deletedOrdersFromLS = JSON.parse(localStorage.getItem('deletedOrders')!);
-    localStorage.setItem('deletedOrders', JSON.stringify([...deletedOrdersFromLS, deletedOrder]));
+    if(deletedOrdersFromLS) {
+      localStorage.setItem('deletedOrders', JSON.stringify([...deletedOrdersFromLS, deletedOrder]));
+    } else {
+      localStorage.setItem('deletedOrders', JSON.stringify(deletedOrder));
+    }
   }
 
   const handleAddRooms = (newRoom: RoomType): void => {
@@ -128,7 +140,19 @@ function App() {
 
     const deletedRoomsServicesArr = roomsServicesArr.filter((roomsService) => roomsService.roomId === deletedRoomId);
     const deletedRoomsServicesArrFromLS = JSON.parse(localStorage.getItem('deletedRoomsServices')!);
-    localStorage.setItem('deletedRoomsServices', JSON.stringify([...deletedRoomsServicesArrFromLS, ...deletedRoomsServicesArr]));
+    if(deletedRoomsServicesArrFromLS) {
+      localStorage.setItem('deletedRoomsServices', JSON.stringify([...deletedRoomsServicesArrFromLS, ...deletedRoomsServicesArr]));
+    } else {
+      localStorage.setItem('deletedRoomsServices', JSON.stringify(deletedRoomsServicesArr));
+    }
+    
+    const deletedRoom = roomsArr.find((room) => room.id === deletedRoomId);
+    const deletedRoomsArrFromLS = JSON.parse(localStorage.getItem('deletedRooms')!);
+    if(deletedRoomsArrFromLS) {
+      localStorage.setItem('deletedRooms', JSON.stringify([...deletedRoomsArrFromLS, deletedRoom]));
+    } else {
+      localStorage.setItem('deletedRooms', JSON.stringify([deletedRoom]));
+    }
   }
 
   const handleAddRoomService = (newRoomService: RoomServiceType): void => {
