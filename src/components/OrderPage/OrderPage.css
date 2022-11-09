@@ -71,3 +71,38 @@
   font-size: 15px;
   color: grey;
 }
+
+@media screen and (min-width: 374px) {
+  .order-page {
+    gap: 8px;
+  }
+
+  .order-page__delButton {
+    font-size: 16px;
+  }
+
+  .order-page__text {
+    font-size: 16px;
+  }
+
+  .order-page__span {
+    font-size: 18px;
+  }
+
+  .order-page__link {
+    font-size: 18px;
+  }
+
+  .order-page__addRoomButton {
+    font-size: 16px;
+  }
+
+  .rooms {
+    gap: 10px;
+  }
+
+  .rooms__info {
+    font-size: 20px;
+  }
+
+}

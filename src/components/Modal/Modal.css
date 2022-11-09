@@ -10,7 +10,9 @@
   align-items: center;
   font-family: 'Arial Black', Helvetica, sans-serif;
   box-sizing: border-box;
+  z-index: 2;
 }
+
 .menu {
   width: 80%;
   height: 100%;
@@ -53,4 +55,11 @@
 
 .menu__link {
   color: #000;
+  font-size: 20px;
+}
+
+@media screen and (min-width: 324px) {
+  .menu__link {
+    font-size: 24px;
+  }
 }

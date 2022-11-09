@@ -1,6 +1,6 @@
 .form-input {
   padding: 5px 15px;
-  border: 1px solid #000;
+  border: 2px solid #000;
   border-radius: 99em;
   width: 80%;
   margin: 0;
@@ -24,4 +24,10 @@
 
 .form-input:focus::placeholder {
   opacity: 0;
+}
+
+@media screen and (min-width: 324px) {
+  .form-input {
+    font-size: 18px;
+  }
 }

@@ -26,3 +26,17 @@
   text-align: center;
   color: grey;
 }
+
+@media screen and (min-width: 374px) {
+  .start-screen__info {
+    font-size: 20px;
+  }
+
+  .start-screen__title {
+    font-size: 25px;
+  }
+
+  .start-screen__link {
+    font-size: 22px;
+  }
+}

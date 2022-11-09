@@ -11,6 +11,7 @@ type PropsType = {
 const ServicesList: FC<PropsType> = ({ services, handleDeleteService }) => {
   return (
     <>
+      <Link to='/rcounter/add-services' className="services__button page__link">Добавить услугу</Link>
       <ul className='services page__list'>
         {
           services.map((service: ServiceType) => {
@@ -21,7 +22,6 @@ const ServicesList: FC<PropsType> = ({ services, handleDeleteService }) => {
         }
       </ul>
       <Link to='/rcounter/orders' className="services__navLink page__link">К заказам</Link>
-      <Link to='/rcounter/add-services' className="services__button page__link">+</Link>
     </>
   )
 }

@@ -56,3 +56,22 @@
 .order__subtitle-link {
   color: inherit;
 }
+
+@media screen and (min-width: 374px) {
+  .order {
+    gap: 10px;
+  }
+
+  .order__title {
+    font-size: 20px;
+  }
+
+  .order__subtitle {
+    font-size: 15px;
+    gap: 5px;
+  }
+
+  .order__button {
+    font-size: 15px;
+  }
+}

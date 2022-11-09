@@ -92,3 +92,37 @@
   width: 18%;
   min-width: 18%;
 }
+
+@media screen and (min-width: 374px) {
+  .room {
+    gap: 7px;
+  }
+
+  .room__delButton {
+    font-size: 15px;
+  }
+
+  .room__title {
+    font-size: 24px;
+  }
+
+  .room__info {
+    font-size: 16px;
+  }
+
+  .room__subtitle {
+    font-size: 18px;
+  }
+
+  .room__label {
+    height: 30px;
+  }
+
+  .room__services {
+    font-size: 15px;
+  }
+
+  .room__cash {
+    font-size: 15px;
+  }
+}

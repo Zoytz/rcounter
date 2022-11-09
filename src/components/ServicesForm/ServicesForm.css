@@ -19,6 +19,24 @@
 }
 
 .services__select {
+  border: 2px solid #000;
+  border-radius: 5px;
   font-size: 12px;
   padding: 5px;
+  text-align: center;
+}
+
+@media screen and (min-width: 324px) {
+  .services__label {
+    font-size: 18px;
+  }
+
+  .services__select {
+    font-size: 15px;
+  }
+
+  .services__link {
+    font-size: 18px;
+  }
+
 }

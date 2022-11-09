@@ -11,3 +11,9 @@
 .form-button_type_disabled {
   background-color: grey;
 }
+
+@media screen and (min-width: 324px) {
+  .form-button {
+    font-size: 18px;
+  }
+}

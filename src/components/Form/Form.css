@@ -12,3 +12,9 @@
   font-size: 22px;
   text-align: center;
 }
+
+@media screen and (min-width: 324px) {
+  .form {
+    gap: 20px;
+  }
+}
