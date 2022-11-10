@@ -62,7 +62,7 @@ function App() {
     ordersArr.push(order);
     setOrders(ordersArr);
     localStorage.setItem('orders', JSON.stringify(ordersArr));
-    navigate('/orders')
+    navigate('/rcounter/orders')
   }
 
   const handleDeleteService = (delitedService: ServiceType): void => {
@@ -208,7 +208,7 @@ function App() {
     <div className='page'>
       <Header handleOpenMenu={handleOpenMenu} />
       <Routes>
-        <Route path='/rcounter' element={orders.length !== 0 ? <Navigate to="/orders" /> : <StartScreen />} />
+        <Route path='/rcounter' element={orders.length !== 0 ? <Navigate to="/rcounter/orders" /> : <StartScreen />} />
         <Route path="/rcounter/add-services" element={
           <ServicesForm
             handleServicesFormSubmit={handleServicesFormSubmit}
@@ -217,7 +217,7 @@ function App() {
         <Route path="/rcounter/add-orders" element={
           <OrdersForm handleOrdersFormSubmit={handleOrdersFormSubmit} />}
         />
-        <Route path="/rcounter/orders" element={orders.length === 0 ? <Navigate to="/
+        <Route path="/rcounter/orders" element={orders.length === 0 ? <Navigate to="/rcounter
         " /> : <OrdersList orders={orders} />} />
         <Route path="*" element={<Page404 />} />
 

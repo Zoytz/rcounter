@@ -100,7 +100,7 @@ const RoomCard: FC<PropsType> = ({ currentRoom, handleDeleteRoom, services, hand
     selectObj.value = selectValue;
 
     handleAddRoomService(selectObj);
-    navigate(`/orders/${currentRoom.orderId}`)
+    navigate(`/rcounter/orders/${currentRoom.orderId}`)
   }
 
   const handleDeleteSelect = (event: any) => {
