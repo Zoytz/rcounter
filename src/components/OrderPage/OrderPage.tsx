@@ -35,7 +35,7 @@ const OrderPage: FC<PropsType> = ({ orders, handleDeleteOrder, rooms, handleDele
     } else if (buttonCounter === 1) {
       setButtonCounter(0);
       handleDeleteOrder(Number(orderId));
-      navigate('/rcounter/orders');
+      navigate('/orders');
     }
   }
 
@@ -51,7 +51,7 @@ const OrderPage: FC<PropsType> = ({ orders, handleDeleteOrder, rooms, handleDele
       <p className="order-page__text">Общая сумма: <span className="order-page__span">
       {orderCash.toFixed(0)} руб.</span></p>
       {/* <h2 className="order-page__title">Помещения и услуги:</h2> */}
-      <Link to={`/rcounter/room-form/${orderId}`} className="order-page__addRoomButton page__link" aria-label='Кнопка добавления помещения'>Добавить помещение</Link>
+      <Link to={`/room-form/${orderId}`} className="order-page__addRoomButton page__link" aria-label='Кнопка добавления помещения'>Добавить помещение</Link>
       <ul className="rooms page__list">
         {
           currentRooms.length !== 0 ?

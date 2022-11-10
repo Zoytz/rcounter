@@ -7,10 +7,10 @@ function StartScreen() {
         Начать использование приложения рекомендуется с заполнения списка услуг.
       </p>
       <h1 className='start-screen__title'>У Вас еще нет заказов</h1>
-      <Link to="/rcounter/add-orders" className="start-screen__link page__link">
+      <Link to="/add-orders" className="start-screen__link page__link">
         Создать заказ
       </Link>
-      <Link to="/rcounter/services" className="start-screen__link page__link">
+      <Link to="/services" className="start-screen__link page__link">
         Cписок услуг
       </Link>
     </div>

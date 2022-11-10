@@ -9,7 +9,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/rcounter">
       <App />
     </BrowserRouter>
   </React.StrictMode>
