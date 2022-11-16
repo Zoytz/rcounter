@@ -32,7 +32,7 @@ const ServicesForm: FC<PropsType> = ({ handleServicesFormSubmit }) => {
     serviceObj.dependence = dependence;
     handleServicesFormSubmit(serviceObj);
     resetForm();
-    navigate('/rcounter/services');
+    navigate('/services');
   }
 
   return (
@@ -51,7 +51,7 @@ const ServicesForm: FC<PropsType> = ({ handleServicesFormSubmit }) => {
         </select>
       </label>
       <FormButton isFormValid={isFormValid} name='services-button' buttonText='Сохранить услугу' />
-      <Link to='/rcounter/services' className='services__link page__link'>К списку услуг</Link>
+      <Link to='/services' className='services__link page__link'>К списку услуг</Link>
     </Form>
   )
 }

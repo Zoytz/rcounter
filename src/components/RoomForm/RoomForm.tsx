@@ -38,7 +38,7 @@ const RoomForm: FC<PropsType> = ({ handleAddRooms }) => {
 
     handleAddRooms({
       roomName: values.roomName,
-      roomWallS: (((Number(values.roomWallOne) * Number(values.roomWallHeight) * 2) + (Number(values.roomWallTwo) * Number(values.roomWallHeight) * 2)) - (Number(values.roomWindowsCount) * 2.5) - (Number(values.roomDoorsCount) * 1.6)),
+      roomWallS: (((Number(values.roomWallOne) * Number(values.roomWallHeight) * 2) + (Number(values.roomWallTwo) * Number(values.roomWallHeight) * 2)) - (Number(values.roomWindowsCount) * 1.3) - (Number(values.roomDoorsCount) * 1.6)),
       roomFloorS: (Number(values.roomWallOne) * Number(values.roomWallTwo)),
       roomCeilingS: (Number(values.roomWallOne) * Number(values.roomWallTwo)),
       roomFloorP: ((Number(values.roomWallOne) + Number(values.roomWallTwo)) * 2),
@@ -52,7 +52,7 @@ const RoomForm: FC<PropsType> = ({ handleAddRooms }) => {
       id: Date.now(),
     });
     resetForm();
-    navigate(`/rcounter/orders/${orderId}`);
+    navigate(`/orders/${orderId}`);
   }
 
   return (
@@ -64,7 +64,7 @@ const RoomForm: FC<PropsType> = ({ handleAddRooms }) => {
       <FormInput required={false} onChange={handleChange} value={values.roomWindowsCount} name='roomWindowsCount' type="number" label='Количество окон:' error={errors.servicePrice} />
       <FormInput required={true} onChange={handleChange} value={values.roomDoorsCount} name='roomDoorsCount' type="number" label='Количество дверей:' error={errors.servicePrice} />
       <FormButton isFormValid={isFormValid} name='services-button' buttonText='Сохранить помещение' />
-      <Link to={`/rcounter/orders/${orderId}`} className='services__link page__link'>Вернуться к заказу</Link>
+      <Link to={`/orders/${orderId}`} className='services__link page__link'>Вернуться к заказу</Link>
     </Form>
   )
 }

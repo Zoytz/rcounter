@@ -19,7 +19,7 @@ const OrdersList: FC<PropsType> = ({ orders }) => {
           })
         }
       </ul>
-      <Link to='/rcounter/add-orders' className="orders__link page__link">+</Link>
+      <Link to='/add-orders' className="orders__link page__link">+</Link>
     </>
   )
 }
