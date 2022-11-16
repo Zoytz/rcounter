@@ -1,9 +1,9 @@
 .service {
+  margin-top: 7px;
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
   justify-content: space-between;
-  gap: 5px;
   padding: 5px 0;
   border-bottom: 2px solid #000;
 }
@@ -11,6 +11,7 @@
 .service__title {
   font-size: 12px;
   margin: 0;
+  margin-left: 5px;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -37,9 +38,6 @@
 }
 
 @media screen and (min-width: 374px) {
-  .service {
-    gap: 10px;
-  }
 
   .service__button {
     border-radius: 5px;
@@ -53,6 +51,7 @@
 
   .service__title {
     font-size: 17px;
+    margin-left: 10px;
   }
 
   .services__navLink {

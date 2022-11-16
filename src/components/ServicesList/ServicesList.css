@@ -1,7 +1,6 @@
 .services {
   display: flex;
   flex-direction: column;
-  gap: 5px;
 }
 
 .services__button {
@@ -29,6 +28,7 @@
   color: #000;
   width: 40%;
   text-align: center;
+  max-width: 170px;
 }
 
 @media screen and (min-width: 374px) {

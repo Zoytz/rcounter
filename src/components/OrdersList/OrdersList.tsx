@@ -10,6 +10,7 @@ type PropsType = {
 const OrdersList: FC<PropsType> = ({ orders }) => {
   return (
     <>
+      <Link to='/add-orders' className="orders__link page__link">Создать заказ</Link>
       <ul className='orders page__list'>
         {
           [...orders].reverse().map((order: OrderType) => {
@@ -19,7 +20,6 @@ const OrdersList: FC<PropsType> = ({ orders }) => {
           })
         }
       </ul>
-      <Link to='/add-orders' className="orders__link page__link">+</Link>
     </>
   )
 }
