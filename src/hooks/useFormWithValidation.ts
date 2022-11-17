@@ -2,12 +2,12 @@ import { useState, useCallback } from 'react';
 import { ChangeEvent } from 'react';
 
 type useFormWithValidationTypes = {
-  values: Record<string, string> 
+  values: Record<string, any> 
   handleChange: (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => void
   errors: Record<string, string>
   isFormValid: boolean
   resetForm: (
-    newValues?: Record<string, string>, 
+    newValues?: Record<string, any>, 
     newErrors?: Record<string, string>, 
     newIsFormValid?: boolean) => void
 }

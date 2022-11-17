@@ -11,6 +11,12 @@ type PropsType = {
 
 const Modal: FC<PropsType> = ({ isMenuOpen, handleClosePopup }) => {
 
+  const handleClearLocalStorage = () => {
+    localStorage.setItem("rooms", JSON.stringify([]));
+    localStorage.setItem("orders", JSON.stringify([]));
+    localStorage.setItem("roomsServices", JSON.stringify([]));
+  }
+
   const element = useMemo(() => document.createElement('div'), [])
 
   useEffect(() => {
@@ -43,6 +49,7 @@ const Modal: FC<PropsType> = ({ isMenuOpen, handleClosePopup }) => {
               <Link onClick={handleClosePopup} to="/add-services" className='menu__link page__link'>Создать услугу</Link>
             </li>
           </ul>
+          <button onClick={handleClearLocalStorage} className="menu__clear">Очистить все</button>
         </nav>
       </div>
       , element);

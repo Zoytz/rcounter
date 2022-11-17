@@ -1,20 +1,13 @@
 .form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  gap: 15px;
-  height: 100%;
+  min-height: 100%;
 }
 
 .form__title {
   margin: 0;
   font-size: 22px;
   text-align: center;
-}
-
-@media screen and (min-width: 324px) {
-  .form {
-    gap: 20px;
-  }
 }

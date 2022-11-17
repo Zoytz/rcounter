@@ -11,6 +11,7 @@ import RoomForm, { RoomType } from '../RoomForm/RoomForm';
 import { RoomServiceType } from '../RoomCard/RoomCard';
 import Header from '../Header/Header';
 import Modal from '../Modal/Modal';
+import RoomEditForm from '../RoomEditForm/RoomEditForm';
 
 function App() {
 
@@ -94,7 +95,7 @@ function App() {
 
     const deletedRoomsServicesArr = roomsServicesArr.filter((roomsService) => roomsService.orderId === delitedOrderId);
     const deletedRoomsServicesArrFromLS = JSON.parse(localStorage.getItem('deletedRoomsServices')!);
-    if(deletedRoomsServicesArrFromLS) {
+    if (deletedRoomsServicesArrFromLS) {
       localStorage.setItem('deletedRoomsServices', JSON.stringify([...deletedRoomsServicesArrFromLS, ...deletedRoomsServicesArr]));
     } else {
       localStorage.setItem('deletedRoomsServices', JSON.stringify(deletedRoomsServicesArr));
@@ -104,7 +105,7 @@ function App() {
 
     const deletedRoomsArr = roomsArr.filter((room) => room.orderId === Number(delitedOrderId));
     const deletedRoomsArrFromLS = JSON.parse(localStorage.getItem('deletedRooms')!);
-    if(deletedRoomsArrFromLS) {
+    if (deletedRoomsArrFromLS) {
       localStorage.setItem('deletedRooms', JSON.stringify([...deletedRoomsArrFromLS, ...deletedRoomsArr]));
     } else {
       localStorage.setItem('deletedRooms', JSON.stringify(deletedRoomsArr));
@@ -113,7 +114,7 @@ function App() {
     /* order */
     const deletedOrder = orders.find((order) => order.id === delitedOrderId);
     const deletedOrdersFromLS = JSON.parse(localStorage.getItem('deletedOrders')!);
-    if(deletedOrdersFromLS) {
+    if (deletedOrdersFromLS) {
       localStorage.setItem('deletedOrders', JSON.stringify([...deletedOrdersFromLS, deletedOrder]));
     } else {
       localStorage.setItem('deletedOrders', JSON.stringify([deletedOrder]));
@@ -140,15 +141,15 @@ function App() {
 
     const deletedRoomsServicesArr = roomsServicesArr.filter((roomsService) => roomsService.roomId === deletedRoomId);
     const deletedRoomsServicesArrFromLS = JSON.parse(localStorage.getItem('deletedRoomsServices')!);
-    if(deletedRoomsServicesArrFromLS) {
+    if (deletedRoomsServicesArrFromLS) {
       localStorage.setItem('deletedRoomsServices', JSON.stringify([...deletedRoomsServicesArrFromLS, ...deletedRoomsServicesArr]));
     } else {
       localStorage.setItem('deletedRoomsServices', JSON.stringify(deletedRoomsServicesArr));
     }
-    
+
     const deletedRoom = roomsArr.find((room) => room.id === deletedRoomId);
     const deletedRoomsArrFromLS = JSON.parse(localStorage.getItem('deletedRooms')!);
-    if(deletedRoomsArrFromLS) {
+    if (deletedRoomsArrFromLS) {
       localStorage.setItem('deletedRooms', JSON.stringify([...deletedRoomsArrFromLS, deletedRoom]));
     } else {
       localStorage.setItem('deletedRooms', JSON.stringify([deletedRoom]));
@@ -185,7 +186,7 @@ function App() {
 
   const handleSaveDeletedRoomServices = (id: number) => {
     const delitedService = roomsServices.find((roomsSercice) => roomsSercice.id === id);
-    if(localStorage.getItem('deletedRoomsServices')) {
+    if (localStorage.getItem('deletedRoomsServices')) {
       const updatedDeletedRoomsServices = JSON.parse(localStorage.getItem('deletedRoomsServices')!);
       updatedDeletedRoomsServices.push(delitedService);
       localStorage.setItem('deletedRoomsServices', JSON.stringify(updatedDeletedRoomsServices));
@@ -202,42 +203,50 @@ function App() {
     setIsMenuOpen(false);
   }
 
+  const handleEditRoom = (updatedRoom: RoomType) => {
+    const updatedRoomsArr = rooms.map((room) => room.id === updatedRoom.id ? updatedRoom : room);
+    setRooms(updatedRoomsArr);
+    localStorage.setItem("rooms", JSON.stringify(updatedRoomsArr));
+    console.log(updatedRoom.roomWindowH)
+  }
+
   return (
     <>
-    <Modal onClose={handleClosePopup} isMenuOpen={isMenuOpen} handleClosePopup={handleClosePopup}/>
-    <div className='page'>
-      <Header handleOpenMenu={handleOpenMenu} />
-      <Routes>
-        <Route path='/' element={orders.length !== 0 ? <Navigate to="/orders" /> : <StartScreen />} />
-        <Route path="/add-services" element={
-          <ServicesForm
-            handleServicesFormSubmit={handleServicesFormSubmit}
-          />}
-        />
-        <Route path="/add-orders" element={
-          <OrdersForm handleOrdersFormSubmit={handleOrdersFormSubmit} />}
-        />
-        <Route path="/orders" element={orders.length === 0 ? <Navigate to="/" /> : <OrdersList orders={orders} />} />
-        <Route path="*" element={<Page404 />} />
+      <Modal onClose={handleClosePopup} isMenuOpen={isMenuOpen} handleClosePopup={handleClosePopup} />
+      <div className='page'>
+        <Header handleOpenMenu={handleOpenMenu} />
+        <Routes>
+          <Route path='/' element={orders.length !== 0 ? <Navigate to="/orders" /> : <StartScreen />} />
+          <Route path="/add-services" element={
+            <ServicesForm
+              handleServicesFormSubmit={handleServicesFormSubmit}
+            />}
+          />
+          <Route path="/add-orders" element={
+            <OrdersForm handleOrdersFormSubmit={handleOrdersFormSubmit} />}
+          />
+          <Route path="/orders" element={orders.length === 0 ? <Navigate to="/" /> : <OrdersList orders={orders} />} />
+          <Route path="*" element={<Page404 />} />
 
-        <Route path='/orders/:orderId'
-          element={<OrderPage
-            handleDeleteOrder={handleDeleteOrder}
-            orders={orders}
-            rooms={rooms}
-            handleDeleteRoom={handleDeleteRoom}
-            services={services}
-            handleAddRoomService={handleAddRoomService}
-            roomsServices={roomsServices}
-            handleUpdateRoomServices={handleUpdateRoomServices}
-            handleDeleteRoomServices={handleDeleteRoomServices}
-          />}
-        />
+          <Route path='/orders/:orderId'
+            element={<OrderPage
+              handleDeleteOrder={handleDeleteOrder}
+              orders={orders}
+              rooms={rooms}
+              handleDeleteRoom={handleDeleteRoom}
+              services={services}
+              handleAddRoomService={handleAddRoomService}
+              roomsServices={roomsServices}
+              handleUpdateRoomServices={handleUpdateRoomServices}
+              handleDeleteRoomServices={handleDeleteRoomServices}
+            />}
+          />
 
-        <Route path='/room-form/:orderId' element={<RoomForm handleAddRooms={handleAddRooms} />} />
-        <Route path='/services' element={<ServicesList handleDeleteService={handleDeleteService} services={services} />} />
-      </Routes>
-    </div>
+          <Route path='/room-form/:orderId' element={<RoomForm handleAddRooms={handleAddRooms} />} />
+          <Route path='/services' element={<ServicesList handleDeleteService={handleDeleteService} services={services} />} />
+          <Route path='/room-edit/:roomId' element={<RoomEditForm handleEditRoom={handleEditRoom} />} />
+        </Routes>
+      </div>
     </>
   )
 }

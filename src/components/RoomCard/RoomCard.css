@@ -73,7 +73,7 @@
   width: 100%;
 }
 
-.room__delButton {
+.room__button {
   border: none;
   background-color: #000;
   border-radius: 4px;
@@ -82,7 +82,7 @@
   padding: 5px 10px;
 }
 
-.room__delButton_type_warning {
+.room__button_type_warning {
   background: linear-gradient(45deg, red 20%, black);
 }
 

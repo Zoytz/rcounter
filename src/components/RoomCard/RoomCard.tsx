@@ -118,10 +118,15 @@ const RoomCard: FC<PropsType> = ({ currentRoom, handleDeleteRoom, services, hand
     }
   }
 
+  const handleEditRoom = () => {
+    navigate(`/room-edit/${currentRoom.id}`)
+  }
+
   return (
     <li className="room" >
       <div className="room__header">
-        <button onClick={handleButtonClick} className={`room__delButton ${buttonCounter === 1 ? 'room__delButton_type_warning' : ''}`}>Удалить</button>
+        <button onClick={handleButtonClick} className={`room__button ${buttonCounter === 1 ? 'room__button_type_warning' : ''}`}>Удалить</button>
+        <button onClick={handleEditRoom} className="room__button">Редактировать</button>
         <h2 className="room__title">{currentRoom.roomName}</h2>
       </div>
       <p className="room__info">Площадь стен:<span className="room__span">
