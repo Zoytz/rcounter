@@ -1,4 +1,4 @@
-import { FC, useState, ChangeEvent } from 'react';
+import { FC, useState, ChangeEvent, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { RoomType } from '../RoomForm/RoomForm';
 import { ServiceType } from '../ServicesForm/ServicesForm';
@@ -23,9 +23,44 @@ export type RoomServiceType = {
 
 const RoomCard: FC<PropsType> = ({ currentRoom, handleDeleteRoom, services, handleAddRoomService, roomsServices, handleUpdateRoomServices, handleDeleteRoomServices }) => {
 
-  const [buttonCounter, setButtonCounter] = useState<number>(0);
-
   const servicesOfThisRoom = roomsServices.filter((roomsService) => roomsService.roomId === currentRoom.id);
+
+  const calculateServiceCash = (serviceOfThisRoom: RoomServiceType) => {
+    const userService = services.find((service) => service.name === serviceOfThisRoom.value) as ServiceType;
+      let serviceCash = 0;
+
+      switch (userService.dependence) {
+        case 'wallS':
+          serviceCash = currentRoom.roomWallS * userService.price;
+          break;
+        case 'ceilingS':
+          serviceCash = currentRoom.roomCeilingS * userService.price;
+          break;
+        case 'floorS':
+          serviceCash = currentRoom.roomFloorS * userService.price;
+          break;
+        case 'ceilingP':
+          serviceCash = currentRoom.roomCeilingP * userService.price;
+          break;
+        case 'floorP':
+          serviceCash = currentRoom.roomFloorP * userService.price;
+          break;
+        default:
+          alert('Нужно запомнить, что Вы сделали до появления этого окна и рассказать об этом разработчику')
+      }
+
+      serviceOfThisRoom.cash = serviceCash;
+  }
+
+  useEffect(() => {
+    servicesOfThisRoom.forEach((serviceOfThisRoom) => {
+      calculateServiceCash(serviceOfThisRoom);
+      handleUpdateRoomServices(serviceOfThisRoom);
+
+    })
+  }, [ currentRoom.roomCeilingP, currentRoom.roomCeilingS, currentRoom.roomFloorP, currentRoom.roomFloorS, currentRoom.roomWallS ]);
+
+  const [buttonCounter, setButtonCounter] = useState<number>(0);
 
   const currentCash: number = servicesOfThisRoom.reduce((prevVal: number, item: RoomServiceType): number => prevVal + Number(item.cash), 0);
 
@@ -35,33 +70,8 @@ const RoomCard: FC<PropsType> = ({ currentRoom, handleDeleteRoom, services, hand
     const select = event.target;
     const selectValue = select.value;
     const updatingTheService = servicesOfThisRoom.find((serviceOfThisRoom => serviceOfThisRoom.id === Number(select.getAttribute("id")))) as RoomServiceType;
-    const userService = services.find((service) => service.name === selectValue) as ServiceType;
-
-    let serviceCash = 0;
-
-    switch (userService.dependence) {
-      case 'wallS':
-        serviceCash = currentRoom.roomWallS * userService.price;
-        break;
-      case 'ceilingS':
-        serviceCash = currentRoom.roomCeilingS * userService.price;
-        break;
-      case 'floorS':
-        serviceCash = currentRoom.roomFloorS * userService.price;
-        break;
-      case 'ceilingP':
-        serviceCash = currentRoom.roomCeilingP * userService.price;
-        break;
-      case 'floorP':
-        serviceCash = currentRoom.roomFloorP * userService.price;
-        break;
-      default:
-        alert('Нужно запомнить, что Вы сделали до появления этого окна и рассказать об этом разработчику')
-    }
-
-    updatingTheService.cash = serviceCash;
     updatingTheService.value = selectValue;
-
+    calculateServiceCash(updatingTheService);
     handleUpdateRoomServices(updatingTheService);
   }
 
@@ -69,35 +79,12 @@ const RoomCard: FC<PropsType> = ({ currentRoom, handleDeleteRoom, services, hand
     const select = event.target;
     const selectValue = select.value;
     const selectObj = {} as RoomServiceType;
-    const userService = services.find((service) => service.name === selectValue) as ServiceType;
-
-    let serviceCash = 0;
-
-    switch (userService.dependence) {
-      case 'wallS':
-        serviceCash = currentRoom.roomWallS * userService.price;
-        break;
-      case 'ceilingS':
-        serviceCash = currentRoom.roomCeilingS * userService.price;
-        break;
-      case 'floorS':
-        serviceCash = currentRoom.roomFloorS * userService.price;
-        break;
-      case 'ceilingP':
-        serviceCash = currentRoom.roomCeilingP * userService.price;
-        break;
-      case 'floorP':
-        serviceCash = currentRoom.roomFloorP * userService.price;
-        break;
-      default:
-        alert('Нужно запомнить, что Вы сделали до появления этого окна и рассказать об этом разработчику')
-    }
 
     selectObj.id = Date.now();
     selectObj.roomId = currentRoom.id;
     selectObj.orderId = currentRoom.orderId;
-    selectObj.cash = serviceCash;
     selectObj.value = selectValue;
+    calculateServiceCash(selectObj);
 
     handleAddRoomService(selectObj);
     navigate(`/orders/${currentRoom.orderId}`)
@@ -152,11 +139,10 @@ const RoomCard: FC<PropsType> = ({ currentRoom, handleDeleteRoom, services, hand
             </label>
           )
         }) : null
-        
+
       }
 
       <label htmlFor="roomServices" className="room__label">
-        {/* <button className='room__servicesDelButton'><span className="room__buttonSpan">x</span></button> */}
         <select onChange={handleSelect} name="roomServices" className="room__services">
           <option value="Выберете услугу:" className="room__service">Услуга:</option>
           {

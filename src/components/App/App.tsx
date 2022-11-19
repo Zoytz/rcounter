@@ -207,7 +207,6 @@ function App() {
     const updatedRoomsArr = rooms.map((room) => room.id === updatedRoom.id ? updatedRoom : room);
     setRooms(updatedRoomsArr);
     localStorage.setItem("rooms", JSON.stringify(updatedRoomsArr));
-    console.log(updatedRoom.roomWindowH)
   }
 
   return (
