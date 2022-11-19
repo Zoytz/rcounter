@@ -20,7 +20,7 @@ const RoomEditForm: FC<PropsType> = ({ handleEditRoom }) => {
 
   const navigate = useNavigate();
 
-  const { values, handleChange, isFormValid, resetForm } = useFormWithValidation();
+  const { values, handleChange, isFormValid, resetForm, errors } = useFormWithValidation();
 
   useEffect(() => {
     const defaultValuesObj = {
@@ -71,20 +71,20 @@ const RoomEditForm: FC<PropsType> = ({ handleEditRoom }) => {
 
   return (
     <Form handleSubmit={handleSubmit} formName='rooms' formTitle='Параметры помещения:'>
-      <FormInput isLabelVisible={true} required={true} onChange={handleChange} value={values.roomName} name='roomName' type="text" label='Название помещения:' />
-      <FormInput isLabelVisible={true} required={true} onChange={handleChange} value={values.roomWallOne} name='roomWallOne' type="number" label='Длина первой стены:'  />
-      <FormInput isLabelVisible={true} required={true} onChange={handleChange} value={values.roomWallTwo} name='roomWallTwo' type="number" label='Длина второй стены:'  />
-      <FormInput isLabelVisible={true} required={true} onChange={handleChange} value={values.roomWallHeight} name='roomWallHeight' type="number" label='Высота стен:'  />
-      <FormInput isLabelVisible={true} required={false} onChange={handleChange} value={values.roomWindowsCount} name='roomWindowsCount' type="number" label='Количество окон:' />
+      <FormInput isLabelVisible={true} required={true} onChange={handleChange} value={values.roomName} name='roomName' type="text" label='Название помещения:' error={errors.roomName}/>
+      <FormInput isLabelVisible={true} required={true} onChange={handleChange} value={values.roomWallOne} name='roomWallOne' type="number" label='Длина первой стены:' error={errors.roomWallOne} />
+      <FormInput isLabelVisible={true} required={true} onChange={handleChange} value={values.roomWallTwo} name='roomWallTwo' type="number" label='Длина второй стены:' error={errors.roomWallTwo} />
+      <FormInput isLabelVisible={true} required={true} onChange={handleChange} value={values.roomWallHeight} name='roomWallHeight' type="number" label='Высота стен:' error={errors.roomWallHeight} />
+      <FormInput isLabelVisible={true} required={false} onChange={handleChange} value={values.roomWindowsCount} name='roomWindowsCount' type="number" label='Количество окон:' error={errors.roomWindowsCount} />
       {Number(values.roomWindowsCount) > 0 ?
         <>
-          <FormInput isLabelVisible={true} required={true} onChange={handleChange} value={values.roomWindowH} name='roomWindowH' type="number" label='Высота окна:' />
-          <FormInput isLabelVisible={true} required={true} onChange={handleChange} value={values.roomWindowW} name='roomWindowW' type="number" label='Ширина Окна:' />
+          <FormInput isLabelVisible={true} required={true} onChange={handleChange} value={values.roomWindowH} name='roomWindowH' type="number" label='Высота окна:' error={errors.roomWindowH}/>
+          <FormInput isLabelVisible={true} required={true} onChange={handleChange} value={values.roomWindowW} name='roomWindowW' type="number" label='Ширина Окна:' error={errors.roomWindowW}/>
         </>
         : null
       }
-      <FormInput isLabelVisible={true} required={true} onChange={handleChange} value={values.roomDoorsCount} name='roomDoorsCount' type="number" label='Количество дверей:' />
-      <FormInput isLabelVisible={true} required={true} onChange={handleChange} value={values.roomDoorW} name='roomDoorW' type="number" label='Ширина двери:' />
+      <FormInput isLabelVisible={true} required={true} onChange={handleChange} value={values.roomDoorsCount} name='roomDoorsCount' type="number" label='Количество дверей:' error={errors.roomDoorsCount}/>
+      <FormInput isLabelVisible={true} required={true} onChange={handleChange} value={values.roomDoorW} name='roomDoorW' type="number" label='Ширина двери:' error={errors.roomDoorW}/>
       <FormButton isFormValid={isFormValid} name='services-button' buttonText='Сохранить помещение' />
       <Link to={`/orders/${currentRoom?.orderId}`} className='services__link page__link'>Вернуться к заказу</Link>
     </Form>

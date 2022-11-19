@@ -91,20 +91,20 @@ const RoomForm: FC<PropsType> = ({ handleAddRooms }) => {
 
   return (
     <Form handleSubmit={handleSubmit} formName='rooms' formTitle='Параметры помещения:'>
-      <FormInput required={true} onChange={handleChange} value={values.roomName} name='roomName' type="text" label='Название помещения:' error={errors.serviceName} />
-      <FormInput required={true} onChange={handleChange} value={values.roomWallOne} name='roomWallOne' type="number" label='Длина первой стены:' error={errors.servicePrice} />
-      <FormInput required={true} onChange={handleChange} value={values.roomWallTwo} name='roomWallTwo' type="number" label='Длина второй стены:' error={errors.servicePrice} />
-      <FormInput required={true} onChange={handleChange} value={values.roomWallHeight} name='roomWallHeight' type="number" label='Высота стен:' error={errors.servicePrice} />
-      <FormInput required={false} onChange={handleChange} value={values.roomWindowsCount} name='roomWindowsCount' type="number" label='Количество окон:' error={errors.servicePrice} />
+      <FormInput required={true} onChange={handleChange} value={values.roomName} name='roomName' type="text" label='Название помещения:' error={errors.roomName} />
+      <FormInput required={true} onChange={handleChange} value={values.roomWallOne} name='roomWallOne' type="number" label='Длина первой стены:' error={errors.roomWallOne} />
+      <FormInput required={true} onChange={handleChange} value={values.roomWallTwo} name='roomWallTwo' type="number" label='Длина второй стены:' error={errors.roomWallTwo} />
+      <FormInput required={true} onChange={handleChange} value={values.roomWallHeight} name='roomWallHeight' type="number" label='Высота стен:' error={errors.roomWallHeight} />
+      <FormInput required={false} onChange={handleChange} value={values.roomWindowsCount} name='roomWindowsCount' type="number" label='Количество окон:' error={errors.roomWindowsCount} />
       {Number(values.roomWindowsCount) > 0 ?
         <>
-          <FormInput required={true} onChange={handleChange} value={values.roomWindowH} name='roomWindowH' type="number" label='Высота окна:' />
-          <FormInput required={true} onChange={handleChange} value={values.roomWindowW} name='roomWindowW' type="number" label='Ширина Окна:' />
+          <FormInput required={true} onChange={handleChange} value={values.roomWindowH} name='roomWindowH' type="number" label='Высота окна:' error={errors.roomWindowH}/>
+          <FormInput required={true} onChange={handleChange} value={values.roomWindowW} name='roomWindowW' type="number" label='Ширина Окна:' error={errors.roomWindowW}/>
         </>
         : null
       }
-      <FormInput required={true} onChange={handleChange} value={values.roomDoorsCount} name='roomDoorsCount' type="number" label='Количество дверей:' error={errors.servicePrice} />
-      <FormInput required={true} onChange={handleChange} value={values.roomDoorW} name='roomDoorW' type="number" label='Ширина двери:' />
+      <FormInput required={true} onChange={handleChange} value={values.roomDoorsCount} name='roomDoorsCount' type="number" label='Количество дверей:' error={errors.roomDoorsCount} />
+      <FormInput required={true} onChange={handleChange} value={values.roomDoorW} name='roomDoorW' type="number" label='Ширина двери:' error={errors.roomDoorW} />
       <FormButton isFormValid={isFormValid} name='services-button' buttonText='Сохранить помещение' />
       <Link to={`/orders/${orderId}`} className='services__link page__link'>Вернуться к заказу</Link>
     </Form>

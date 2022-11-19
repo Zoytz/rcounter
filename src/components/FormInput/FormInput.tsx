@@ -16,9 +16,9 @@ const FormInput: FC<PropsType> = ({ onChange, value, type, error, name, label, r
     <label className='form-input__label'>
       { isLabelVisible ? `${label}` : null}
       {type === 'number' ? 
-      <input step=".01" placeholder={label} onChange={onChange} value={value || ''} type={type} className="form-input" name={name} id={name} required={required} />
-      : <input placeholder={label} onChange={onChange} value={value || ''} type={type} className="form-input" name={name} id={name} required={required} />}
-      <span className={`form-input__error`}>{error}</span>
+      <input step=".01" placeholder={label} onChange={onChange} value={value || ''} type={type} className={`form-input ${error ? "form-input_type_error" : ""}`} name={name} id={name} required={required} />
+      : <input placeholder={label} onChange={onChange} value={value || ''} type={type} className={`form-input ${error ? "form-input_type_error" : ""}`} name={name} id={name} required={required} />}
+      {/* <span className={`form-input__error`}>{error}</span> */}
     </label>
   )
 }

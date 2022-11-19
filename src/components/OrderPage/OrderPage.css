@@ -3,7 +3,6 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 5px;
   height: 100%;
 }
 
@@ -24,6 +23,7 @@
 .order-page__text {
   width: 100%;
   margin: 0;
+  margin-top: 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -49,6 +49,7 @@
 }
 
 .order-page__addRoomButton {
+  margin-top: 5px;
   border: none;
   background-color: #000;
   border-radius: 5px;
@@ -62,8 +63,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
   flex: 1 0 auto;
+  margin-top: 5px;
 }
 
 .rooms__info {
@@ -73,15 +74,13 @@
 }
 
 @media screen and (min-width: 374px) {
-  .order-page {
-    gap: 8px;
-  }
 
   .order-page__delButton {
     font-size: 16px;
   }
 
   .order-page__text {
+    margin-top: 8px;
     font-size: 16px;
   }
 
@@ -94,11 +93,12 @@
   }
 
   .order-page__addRoomButton {
+    margin-top: 8px;
     font-size: 16px;
   }
 
   .rooms {
-    gap: 10px;
+    margin-top: 8px;
   }
 
   .rooms__info {

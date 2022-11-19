@@ -8,6 +8,10 @@
   background-color: #fff;
 }
 
+.form-input_type_error {
+  border: 2px solid red;
+}
+
 .form-input__label {
   margin-top: 10px;
   text-align: center;
