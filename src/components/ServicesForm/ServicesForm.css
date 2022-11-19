@@ -8,6 +8,7 @@
   width: 65%;
   font-size: 14px;
   box-sizing: border-box;
+  margin-top: 10px;
 }
 
 .services__label {
@@ -15,15 +16,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 5px;
+  margin-top: 10px;
+  width: 100%;
 }
 
 .services__select {
+  margin-top: 5px;
   border: 2px solid #000;
   border-radius: 5px;
-  font-size: 12px;
+  font-size: 14px;
   padding: 5px;
   text-align: center;
+  width: 65%;
 }
 
 @media screen and (min-width: 324px) {
@@ -32,7 +36,7 @@
   }
 
   .services__select {
-    font-size: 15px;
+    font-size: 18px;
   }
 
   .services__link {

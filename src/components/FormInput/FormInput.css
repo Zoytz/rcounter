@@ -9,6 +9,7 @@
 }
 
 .form-input__label {
+  margin-top: 10px;
   text-align: center;
   position: relative;
   width: 90%;
