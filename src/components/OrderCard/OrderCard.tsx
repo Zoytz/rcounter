@@ -4,9 +4,10 @@ import { OrderType } from '../OrdersForm/OrdersForm';
 
 type PropsType = {
   order: OrderType
+  orderCash: number
 }
 
-const OrderCard: FC<PropsType> = ({ order }) => {
+const OrderCard: FC<PropsType> = ({ order, orderCash }) => {
 
   const customerTel = String(order.customerTel);
 
@@ -17,6 +18,7 @@ const OrderCard: FC<PropsType> = ({ order }) => {
       <h3 className="order__subtitle">{order.customer}:
         <a className="order__subtitle-link page__link" href={`tel: ${order.customerTel}`}>{customerTel.length === 11 ? `${customerTel[0]}(${customerTel.slice(1, 4)})${customerTel.slice(4, 7)}-${customerTel.slice(7, 9)}-${customerTel.slice(9, 11)}` : order.customerTel}</a>
       </h3>
+      <h3 className="order__subtitle">Сумма заказа: {orderCash.toFixed(0)} руб.</h3>
       <div className="order__buttons">
         <a href={`tel: ${order.customerTel}`} className="order__button">Позвонить</a>
         <Link className="order__button" to={`/orders/${order.id}`}>Подробнее</ Link>

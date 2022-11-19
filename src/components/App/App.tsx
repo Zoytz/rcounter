@@ -225,7 +225,7 @@ function App() {
           <Route path="/add-orders" element={
             <OrdersForm handleOrdersFormSubmit={handleOrdersFormSubmit} />}
           />
-          <Route path="/orders" element={orders.length === 0 ? <Navigate to="/" /> : <OrdersList orders={orders} />} />
+          <Route path="/orders" element={orders.length === 0 ? <Navigate to="/" /> : <OrdersList orders={orders} roomsServices={roomsServices}/>} />
           <Route path="*" element={<Page404 />} />
 
           <Route path='/orders/:orderId'
