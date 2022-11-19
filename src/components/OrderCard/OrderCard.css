@@ -5,26 +5,29 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-  gap: 5px;
   box-sizing: border-box;
 }
 
 .order__title {
   margin: 0;
+  margin-top: 5px;
   font-size: 15px;
   text-align: center;
 }
 
+.order__title:nth-child(1) {
+  margin-top: 0;
+}
+
 .order__subtitle {
   margin: 0;
+  margin-top: 5px;
   font-size: 12px;
   color: grey;
   width: 100%;
   display: flex;
   justify-content: center;
-  gap: 5px;
 }
 
 .order__buttons {
@@ -33,10 +36,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 5px;
 }
 
 .order__button {
+  margin-top: 5px;
   text-align: center;
   border: none;
   background-color: #000;
@@ -58,20 +61,19 @@
 }
 
 @media screen and (min-width: 374px) {
-  .order {
-    gap: 10px;
-  }
 
   .order__title {
+    margin-top: 10px;
     font-size: 20px;
   }
 
   .order__subtitle {
+    margin-top: 10px;
     font-size: 15px;
-    gap: 5px;
   }
 
   .order__button {
+    margin-top: 10px;
     font-size: 15px;
   }
 }
