@@ -41,9 +41,14 @@ const OrderPage: FC<PropsType> = ({ orders, handleDeleteOrder, rooms, handleDele
 
   const orderCash = roomsServices.filter((roomService) => roomService.orderId === Number(orderId)).reduce((prev, item) => prev + item.cash, 0);
 
+  const date = new Date(Number(orderId));
+
+
   return (
     <div className="order-page">
       <button onClick={handleButtonClick} className={`order-page__delButton ${buttonCounter === 1 ? 'order-page__delButton_type_warning' : ''}`} aria-label='Кнопка удаления заказа'>Удалить</button>
+      <p className="order-page__text">Дата создания: <span className="order-page__span">{
+        `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`}</span></p>
       <p className="order-page__text">Город: <span className="order-page__span">{currentOrder?.city}</span></p>
       <p className="order-page__text">Улица: <span className="order-page__span">{currentOrder?.street}</span></p>
       <p className="order-page__text">Дом/квартира: <span className="order-page__span">{`д.${currentOrder?.houseNumber}, кв.${currentOrder?.apartmentNumber}`}</span></p>
