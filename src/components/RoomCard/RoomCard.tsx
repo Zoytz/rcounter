@@ -22,35 +22,35 @@ export type RoomServiceType = {
 }
 
 const RoomCard: FC<PropsType> = React.memo(({ currentRoom, handleDeleteRoom, services, handleAddRoomService, roomsServices, handleUpdateRoomServices, handleDeleteRoomServices }) => {
-  
+
   const servicesOfThisRoom = roomsServices.filter((roomsService: RoomServiceType) => roomsService.roomId === currentRoom.id) as RoomServiceType[];
-  
+
 
   const calculateServiceCash = (serviceOfThisRoom: RoomServiceType) => {
     const userService = services.find((service) => service.name === serviceOfThisRoom.value) as ServiceType;
-      let serviceCash = 0;
+    let serviceCash = 0;
 
-      switch (userService.dependence) {
-        case 'wallS':
-          serviceCash = currentRoom.roomWallS * userService.price;
-          break;
-        case 'ceilingS':
-          serviceCash = currentRoom.roomCeilingS * userService.price;
-          break;
-        case 'floorS':
-          serviceCash = currentRoom.roomFloorS * userService.price;
-          break;
-        case 'ceilingP':
-          serviceCash = currentRoom.roomCeilingP * userService.price;
-          break;
-        case 'floorP':
-          serviceCash = currentRoom.roomFloorP * userService.price;
-          break;
-        default:
-          alert('Нужно запомнить, что Вы сделали до появления этого окна и рассказать об этом разработчику')
-      }
+    switch (userService.dependence) {
+      case 'wallS':
+        serviceCash = currentRoom.roomWallS * userService.price;
+        break;
+      case 'ceilingS':
+        serviceCash = currentRoom.roomCeilingS * userService.price;
+        break;
+      case 'floorS':
+        serviceCash = currentRoom.roomFloorS * userService.price;
+        break;
+      case 'ceilingP':
+        serviceCash = currentRoom.roomCeilingP * userService.price;
+        break;
+      case 'floorP':
+        serviceCash = currentRoom.roomFloorP * userService.price;
+        break;
+      default:
+        alert('Нужно запомнить, что Вы сделали до появления этого окна и рассказать об этом разработчику')
+    }
 
-      serviceOfThisRoom.cash = serviceCash;
+    serviceOfThisRoom.cash = serviceCash;
   }
 
   useEffect(() => {
@@ -59,7 +59,7 @@ const RoomCard: FC<PropsType> = React.memo(({ currentRoom, handleDeleteRoom, ser
       handleUpdateRoomServices(serviceOfThisRoom);
 
     })
-  }, [ currentRoom.roomCeilingP, currentRoom.roomCeilingS, currentRoom.roomFloorP, currentRoom.roomFloorS, currentRoom.roomWallS ]);
+  }, [currentRoom.roomCeilingP, currentRoom.roomCeilingS, currentRoom.roomFloorP, currentRoom.roomFloorS, currentRoom.roomWallS]);
 
   const [buttonCounter, setButtonCounter] = useState<number>(0);
 
@@ -113,8 +113,10 @@ const RoomCard: FC<PropsType> = React.memo(({ currentRoom, handleDeleteRoom, ser
   return (
     <li className="room" >
       <div className="room__header">
-        <button onClick={handleButtonClick} className={`room__button ${buttonCounter === 1 ? 'room__button_type_warning' : ''}`}>Удалить</button>
-        <button onClick={handleEditRoom} className="room__button">Редактировать</button>
+        <div className="room__buttons">
+          <button onClick={handleButtonClick} className={`room__button ${buttonCounter === 1 ? 'room__button_type_warning' : ''}`}>Удалить</button>
+          <button onClick={handleEditRoom} className="room__button">Редактировать</button>
+        </div>
         <h2 className="room__title">{currentRoom.roomName}</h2>
       </div>
       <p className="room__info">Площадь стен:<span className="room__span">

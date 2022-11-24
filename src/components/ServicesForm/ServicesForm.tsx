@@ -42,12 +42,12 @@ const ServicesForm: FC<PropsType> = ({ handleServicesFormSubmit }) => {
       <label className='services__label'>
         Расчет из:
         <select name="dependence" className='services__select' onChange={handleChange} value={values.dependence} required>
-          <option value=''>От чего зависит</option>
-          <option value="wallS">Площадь стен</option>
-          <option value="ceilingS">Площадь потолка</option>
-          <option value="floorS">Площадь пола</option>
-          <option value="ceilingP">Периметр потолка</option>
-          <option value="floorP">Периметр пола</option>
+          <option className='services__option' value=''>От чего зависит</option>
+          <option className='services__option' value="wallS">Площадь стен</option>
+          <option className='services__option' value="ceilingS">Площадь потолка</option>
+          <option className='services__option' value="floorS">Площадь пола</option>
+          <option className='services__option' value="ceilingP">Периметр потолка</option>
+          <option className='services__option' value="floorP">Периметр пола</option>
         </select>
       </label>
       <FormButton isFormValid={isFormValid} name='services-button' buttonText='Сохранить услугу' />

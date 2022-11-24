@@ -40,6 +40,12 @@
 
 .services__select:focus {
   outline: none;
+  background: var(--main-bg-color);
+}
+
+.services__option {
+  background: none;
+  color: var(--main-text-color);
 }
 
 @media screen and (min-width: 324px) {

@@ -1,6 +1,6 @@
 .room {
   margin-top: 5px;
-  border: 2px solid #000;
+  border: 2px solid var(--main-text-color);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -18,6 +18,7 @@
 .room__title {
   margin: 0;
   font-size: 18px;
+  color: var(--main-text-color);
 }
 
 .room__info {
@@ -25,12 +26,12 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  color: grey;
+  color: var(--secondary-text-color);
   font-size: 13px;
 }
 
 .room__span {
-  color: #000;
+  color: var(--main-text-color);
 }
 
 .room__subtitle {
@@ -41,11 +42,18 @@
 .room__services {
   width: 100%;
   padding: 2px 5px;
-  border: 1px solid #000;
+  border: 1px solid var(--main-text-color);
+  color: var(--main-text-color);
   border-radius: 6px;
   font-size: 13px;
   height: 100%;
-  background-color: #fff;
+  background-color: var(--main-bg-color);
+  background: none;
+}
+
+.room__services:focus {
+  outline: none;
+  background: var(--main-bg-color);
 }
 
 .room__label {
@@ -79,16 +87,19 @@
 }
 
 .room__button {
-  border: none;
-  background-color: #000;
+  border: 2px solid var(--main-text-color);
+  background-color: var(--main-bg-color);
   border-radius: 4px;
-  color: #fff;
+  color: var(--main-text-color);
   font-size: 11px;
   padding: 5px 10px;
+  background: none;
+  margin-right: 5px;
 }
 
 .room__button_type_warning {
-  background: linear-gradient(45deg, red 20%, black);
+  border: 2px solid var(--main-bg-color);
+  background: linear-gradient(45deg, black, red);
 }
 
 .room__cash {
@@ -97,6 +108,7 @@
   font-size: 13px;
   width: 18%;
   min-width: 18%;
+  color: var(--main-text-color);
 }
 
 @media screen and (min-width: 374px) {
