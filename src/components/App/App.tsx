@@ -12,6 +12,7 @@ import { RoomServiceType } from '../RoomCard/RoomCard';
 import Header from '../Header/Header';
 import Modal from '../Modal/Modal';
 import RoomEditForm from '../RoomEditForm/RoomEditForm';
+import OrdersEditForm from '../OrdersEditForm/OrdersEditForm';
 
 function App() {
 
@@ -209,6 +210,12 @@ function App() {
     localStorage.setItem("rooms", JSON.stringify(updatedRoomsArr));
   }
 
+  const handleEditOrder = (updatedOrder: OrderType) => {
+    const updatedOrdersArr = orders.map((order) => order.id === updatedOrder.id ? updatedOrder : order);
+    setOrders(updatedOrdersArr);
+    localStorage.setItem('orders', JSON.stringify(updatedOrdersArr));
+  }
+
   return (
     <>
       <Modal onClose={handleClosePopup} isMenuOpen={isMenuOpen} handleClosePopup={handleClosePopup} />
@@ -244,6 +251,7 @@ function App() {
           <Route path='/room-form/:orderId' element={<RoomForm handleAddRooms={handleAddRooms} />} />
           <Route path='/services' element={<ServicesList handleDeleteService={handleDeleteService} services={services} />} />
           <Route path='/room-edit/:roomId' element={<RoomEditForm handleEditRoom={handleEditRoom} />} />
+          <Route path='/order-edit/:orderId' element={<OrdersEditForm handleEditOrder={handleEditOrder} />} />
         </Routes>
       </div>
     </>

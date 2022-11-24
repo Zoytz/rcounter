@@ -6,7 +6,14 @@
   height: 100%;
 }
 
-.order-page__delButton {
+.order-page__buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-page__button {
   border: none;
   background-color: #000;
   border-radius: 4px;
@@ -16,7 +23,7 @@
   align-self: start;
 }
 
-.order-page__delButton_type_warning {
+.order-page__button_type_warning {
   background: linear-gradient(45deg, red 20%, black);
 }
 

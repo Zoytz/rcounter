@@ -43,10 +43,17 @@ const OrderPage: FC<PropsType> = ({ orders, handleDeleteOrder, rooms, handleDele
 
   const date = new Date(Number(orderId));
 
+  const handleEditOrder = () => {
+    navigate(`/order-edit/${orderId}`)
+  }
+
 
   return (
     <div className="order-page">
-      <button onClick={handleButtonClick} className={`order-page__delButton ${buttonCounter === 1 ? 'order-page__delButton_type_warning' : ''}`} aria-label='Кнопка удаления заказа'>Удалить</button>
+      <div className="order-page__buttons">
+        <button onClick={handleButtonClick} className={`order-page__button ${buttonCounter === 1 ? 'order-page__button_type_warning' : ''}`} aria-label='Кнопка удаления заказа'>Удалить</button>
+        <button onClick={handleEditOrder} className="order-page__button" aria-label='Кнопка редактирования заказа'>Редактировать</button>
+      </div>
       <p className="order-page__text">Дата создания: <span className="order-page__span">{
         `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`}</span></p>
       <p className="order-page__text">Город: <span className="order-page__span">{currentOrder?.city}</span></p>
@@ -55,7 +62,7 @@ const OrderPage: FC<PropsType> = ({ orders, handleDeleteOrder, rooms, handleDele
       <p className="order-page__text">Заказчик: <span className="order-page__span">{currentOrder?.customer}</span></p>
       <p className="order-page__text">Номер телефона: <a href={`tel: ${currentOrder?.customerTel}`} className="order-page__link page__link">{currentOrder?.customerTel}</a></p>
       <p className="order-page__text">Общая сумма: <span className="order-page__span">
-      {orderCash.toFixed(0)} руб.</span></p>
+        {orderCash.toFixed(0)} руб.</span></p>
       {/* <h2 className="order-page__title">Помещения и услуги:</h2> */}
       <Link to={`/room-form/${orderId}`} className="order-page__addRoomButton page__link" aria-label='Кнопка добавления помещения'>Добавить помещение</Link>
       <ul className="rooms page__list">
