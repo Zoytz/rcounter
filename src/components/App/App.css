@@ -17,10 +17,7 @@
   padding: 10px;
   padding-top: 50px;
   position: relative;
-  background-image: url(../../images/firstGif.gif);
-  background-size: cover;
-  background-repeat: no-repeat;
-
+  background: none;
 }
 
 .page__list  {
@@ -39,6 +36,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.bg-container {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url(../../images/firstGif.gif);
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: -1;
 }
 
 @media screen and (min-width: 374px) {
