@@ -1,4 +1,4 @@
-import { FC, useState, ChangeEvent, useEffect } from 'react';
+import React, { FC, useState, ChangeEvent, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { RoomType } from '../RoomForm/RoomForm';
 import { ServiceType } from '../ServicesForm/ServicesForm';
@@ -21,9 +21,10 @@ export type RoomServiceType = {
   value: string
 }
 
-const RoomCard: FC<PropsType> = ({ currentRoom, handleDeleteRoom, services, handleAddRoomService, roomsServices, handleUpdateRoomServices, handleDeleteRoomServices }) => {
-
-  const servicesOfThisRoom = roomsServices.filter((roomsService) => roomsService.roomId === currentRoom.id);
+const RoomCard: FC<PropsType> = React.memo(({ currentRoom, handleDeleteRoom, services, handleAddRoomService, roomsServices, handleUpdateRoomServices, handleDeleteRoomServices }) => {
+  
+  const servicesOfThisRoom = roomsServices.filter((roomsService: RoomServiceType) => roomsService.roomId === currentRoom.id) as RoomServiceType[];
+  
 
   const calculateServiceCash = (serviceOfThisRoom: RoomServiceType) => {
     const userService = services.find((service) => service.name === serviceOfThisRoom.value) as ServiceType;
@@ -154,6 +155,6 @@ const RoomCard: FC<PropsType> = ({ currentRoom, handleDeleteRoom, services, hand
       </label>
     </li>
   )
-}
+})
 
 export default RoomCard;

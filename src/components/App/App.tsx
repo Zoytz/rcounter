@@ -23,6 +23,10 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = React.useState<boolean>(false);
 
   React.useEffect(() => {
+    // const servicesFromLS: Array<ServiceType> = JSON.parse(localStorage.getItem('services')!);
+    // if (servicesFromLS && servicesFromLS.length > 0) {
+    //   setServices(servicesFromLS);
+    // }
     if (localStorage.getItem('services') && JSON.parse(localStorage.getItem('services')!).length > 0 && services.length === 0) {
       const servicesFromLS: Array<ServiceType> = JSON.parse(localStorage.getItem('services')!);
       setServices(servicesFromLS);
@@ -44,6 +48,12 @@ function App() {
   }, [rooms]);
 
   React.useEffect(() => {
+
+    // const roomServicesFromLS: Array<RoomServiceType> = JSON.parse(localStorage.getItem('roomsServices')!);
+    // if (roomServicesFromLS && roomServicesFromLS.length > 0) {
+    //   setRoomsServices(roomServicesFromLS);
+    // }
+
     if (localStorage.getItem('roomsServices') && JSON.parse(localStorage.getItem('roomsServices')!).length > 0 && roomsServices.length === 0) {
       const roomServicesFromLS: Array<RoomServiceType> = JSON.parse(localStorage.getItem('roomsServices')!);
       setRoomsServices(roomServicesFromLS);
@@ -72,6 +82,9 @@ function App() {
     const newServicesArr: Array<ServiceType> = servicesArr.filter(service => service.name !== delitedService.name);
     setServices(newServicesArr);
     localStorage.setItem('services', JSON.stringify(newServicesArr));
+    const updatedRoomsServicesArr = roomsServices.filter((roomsService: RoomServiceType) => roomsService.value !== delitedService.name);
+    setRoomsServices(updatedRoomsServicesArr);
+    localStorage.setItem('roomsServices', JSON.stringify(updatedRoomsServicesArr));
   }
 
   const handleDeleteOrder = (delitedOrderId: number): void => {
@@ -231,7 +244,7 @@ function App() {
           <Route path="/add-orders" element={
             <OrdersForm handleOrdersFormSubmit={handleOrdersFormSubmit} />}
           />
-          <Route path="/orders" element={orders.length === 0 ? <Navigate to="/" /> : <OrdersList orders={orders} roomsServices={roomsServices}/>} />
+          <Route path="/orders" element={orders.length === 0 ? <Navigate to="/" /> : <OrdersList orders={orders} roomsServices={roomsServices} />} />
           <Route path="*" element={<Page404 />} />
 
           <Route path='/orders/:orderId'

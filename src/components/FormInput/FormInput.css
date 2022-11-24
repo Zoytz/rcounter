@@ -1,11 +1,13 @@
 .form-input {
   padding: 5px 15px;
-  border: 2px solid #000;
+  border: 2px solid var(--main-text-color);
   border-radius: 99em;
   width: 80%;
   margin: 0;
   text-align: center;
-  background-color: #fff;
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
+  background: none;
 }
 
 .form-input_type_error {
@@ -30,6 +32,14 @@
 
 .form-input:focus::placeholder {
   opacity: 0;
+}
+
+.form-input::placeholder {
+  color: var(--secondary-text-color);
+}
+
+.form-input:focus {
+  outline: none;
 }
 
 @media screen and (min-width: 324px) {

@@ -10,12 +10,13 @@
 .start-screen__title {
   margin: 0;
   font-size: 20px;
+  color: var(--main-text-color);
 }
 
 .start-screen__link {
   text-align: center;
-  color: #000;
-  border: 2px solid #000;
+  color: var(--main-text-color);
+  border: 2px solid var(--main-text-color);
   border-radius: 99em;
   padding: 5px 15px;
   width: 60%;
@@ -24,7 +25,7 @@
 .start-screen__info {
   margin: 0;
   text-align: center;
-  color: grey;
+  color: var(--secondary-text-color);
 }
 
 @media screen and (min-width: 374px) {

@@ -1,5 +1,5 @@
 .order {
-  border: 2px solid #000;
+  border: 2px solid var(--main-text-color);
   border-radius: 10px;
   padding: 8px;
   width: 100%;
@@ -14,6 +14,7 @@
   margin-top: 5px;
   font-size: 15px;
   text-align: center;
+  color: var(--main-text-color);
 }
 
 .order__title:nth-child(1) {
@@ -24,7 +25,7 @@
   margin: 0;
   margin-top: 5px;
   font-size: 12px;
-  color: grey;
+  color: var(--secondary-text-color);
   width: 100%;
   display: flex;
   justify-content: center;
@@ -41,9 +42,9 @@
 .order__button {
   margin-top: 5px;
   text-align: center;
-  border: none;
-  background-color: #000;
-  color: #fff;
+  border: 2px solid var(--main-text-color);
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
   font-size: 13px;
   border-radius: 5px;
   width: 45%;
@@ -53,11 +54,11 @@
 }
 
 .order__link {
-  color: #000;
+  color: var(--main-bg-color);
 }
 
 .order__subtitle-link {
-  color: inherit;
+  color: var(--secondary-text-color);
 }
 
 @media screen and (min-width: 374px) {

@@ -16,7 +16,7 @@
 .menu {
   width: 80%;
   height: 100%;
-  background-color: #fff;
+  background-color: var(--main-bg-color);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,7 +30,7 @@
   padding: 0;
   width: 30px;
   border: none;
-  background-color: #fff;
+  background-color: var(--main-bg-color);
   height: 30px;
   background-repeat: no-repeat;
   background-position: center;
@@ -54,7 +54,7 @@
 }
 
 .menu__link {
-  color: #000;
+  color: var(--main-text-color);
   font-size: 20px;
 }
 

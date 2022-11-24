@@ -10,4 +10,5 @@
   margin: 0;
   font-size: 22px;
   text-align: center;
+  color: var(--main-text-color);
 }

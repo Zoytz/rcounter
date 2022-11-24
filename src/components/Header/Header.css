@@ -10,8 +10,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 5px 10px;
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0 6px 4px -4px rgba(0, 0, 0, .2);
+  background-color: rgba(0, 0, 0, 0.6);
+  /* border-bottom: 1px solid var(--main-text-color); */
   z-index: 2;
   box-sizing: border-box;
 }
@@ -20,7 +20,7 @@
   padding: 0;
   width: 30px;
   border: none;
-  background-color: #fff;
+  background-color: rgba(0, 0, 0, 0);
   height: 30px;
   background-repeat: no-repeat;
   background-position: center;
@@ -30,7 +30,7 @@
 
 .header__link {
   font-size: 22px;
-  background: linear-gradient(135deg, #000 20%, red 70%);
+  background: var(--main-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

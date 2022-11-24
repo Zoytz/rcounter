@@ -1,14 +1,18 @@
 .services__link {
   display: block;
   text-align: center;
-  color: #000;
+  color: var(--main-text-color);
   padding: 8px 20px;
-  border: 2px solid #000;
+  border: 2px solid var(--main-text-color);
   border-radius: 5px;
   width: 65%;
   font-size: 14px;
   box-sizing: border-box;
   margin-top: 10px;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .services__label {
@@ -18,16 +22,24 @@
   align-items: center;
   margin-top: 10px;
   width: 100%;
+  color: var(--main-text-color);
 }
 
 .services__select {
   margin-top: 5px;
-  border: 2px solid #000;
+  border: 2px solid var(--main-text-color);
   border-radius: 5px;
   font-size: 14px;
   padding: 5px;
   text-align: center;
   width: 65%;
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
+  background: none;
+}
+
+.services__select:focus {
+  outline: none;
 }
 
 @media screen and (min-width: 324px) {

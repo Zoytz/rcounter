@@ -1,16 +1,19 @@
 .form-button {
   margin-top: 10px;
-  border: none;
-  background-color: #000;
+  border: 2px solid var(--main-text-color);
+  background-color: var(--main-bg-color);
   padding: 10px 20px;
-  color: #fff;
+  color: var(--main-text-color);
   font-size: 14px;
   border-radius: 5px;
   width: 65%;
+  box-sizing: border-box;
+  background: none;
 }
 
 .form-button_type_disabled {
-  background-color: grey;
+  border: 2px solid var(--secondary-text-color);
+  color: var(--secondary-text-color);
 }
 
 @media screen and (min-width: 324px) {
