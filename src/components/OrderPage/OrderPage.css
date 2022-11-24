@@ -75,6 +75,7 @@
   align-items: center;
   flex: 1 0 auto;
   margin-top: 5px;
+  padding-bottom: 10px;
 }
 
 .rooms__info {
