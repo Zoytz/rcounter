@@ -233,7 +233,7 @@ function App() {
     <>
       <Modal onClose={handleClosePopup} isMenuOpen={isMenuOpen} handleClosePopup={handleClosePopup} />
       <div className='page'>
-        <div className="bg-container"></div>
+        {/* <div className="bg-container"></div> */}
         <Header handleOpenMenu={handleOpenMenu} />
         <Routes>
           <Route path='/' element={orders.length !== 0 ? <Navigate to="/orders" /> : <StartScreen />} />
