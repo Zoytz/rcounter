@@ -18,7 +18,7 @@ const FormInput: FC<PropsType> = ({ onChange, value, type, error, name, label, r
   return (
     <>
       <label htmlFor={name} className='form-input__label'>{label}</label>
-      <div className={`input__container ${isFocused ? 'input__container__type_focused' : ''}`}>
+      <div className={`input__container ${error ? 'input__container_type_error' : isFocused ? 'input__container_type_focused' : ''}`}>
         {type === 'number' ?
           <input onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)} step=".01" onChange={onChange} value={value || ''} type={type} className={`form-input ${error ? "form-input_type_error" : ""}`} name={name} id={name} required={required} />
           : <input onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)} onChange={onChange} value={value || ''} type={type} className={`form-input ${error ? "form-input_type_error" : ""}`} name={name} id={name} required={required} />}
