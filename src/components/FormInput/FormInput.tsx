@@ -1,4 +1,4 @@
-import { FC, ChangeEvent } from 'react';
+import { FC, ChangeEvent, useState } from 'react';
 
 type PropsType = {
   value?: string
@@ -12,14 +12,19 @@ type PropsType = {
 }
 
 const FormInput: FC<PropsType> = ({ onChange, value, type, error, name, label, required, isLabelVisible }) => {
+
+  const [isFocused, setIsFocused] = useState<boolean>(false);
+
   return (
-    <label className='form-input__label'>
-      { isLabelVisible ? `${label}` : null}
-      {type === 'number' ? 
-      <input step=".01" placeholder={label} onChange={onChange} value={value || ''} type={type} className={`form-input ${error ? "form-input_type_error" : ""}`} name={name} id={name} required={required} />
-      : <input placeholder={label} onChange={onChange} value={value || ''} type={type} className={`form-input ${error ? "form-input_type_error" : ""}`} name={name} id={name} required={required} />}
-      {/* <span className={`form-input__error`}>{error}</span> */}
-    </label>
+    <>
+      <label htmlFor={name} className='form-input__label'>{label}</label>
+      <div className={`input__container ${isFocused ? 'input__container__type_focused' : ''}`}>
+        {type === 'number' ?
+          <input onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)} step=".01" onChange={onChange} value={value || ''} type={type} className={`form-input ${error ? "form-input_type_error" : ""}`} name={name} id={name} required={required} />
+          : <input onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)} onChange={onChange} value={value || ''} type={type} className={`form-input ${error ? "form-input_type_error" : ""}`} name={name} id={name} required={required} />}
+        {/* <span className={`form-input__error`}>{error}</span> */}
+      </div>
+    </>
   )
 }
 
