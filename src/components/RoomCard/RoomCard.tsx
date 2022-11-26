@@ -122,6 +122,7 @@ const RoomCard: FC<PropsType> = React.memo(({ currentRoom, handleDeleteRoom, ser
       <p className="room__info">Площадь стен:<span className="room__span">
         {currentRoom.roomWallS.toFixed(2)} кв./м.</span></p>
       <p className="room__info">Площадь потолка/пола:<span className="room__span">{currentRoom.roomCeilingS.toFixed(2)} кв./м.</span></p>
+      <p className="room__info">Периметр потолка/пола:<span className="room__span">{currentRoom.roomCeilingP.toFixed(2)} кв./м.</span></p>
       <p className="room__info">Стоимость работ:<span className="room__span">{currentCash.toFixed(0)} руб.</span></p>
       <h3 className="room__subtitle">Услуги:</h3>
 
