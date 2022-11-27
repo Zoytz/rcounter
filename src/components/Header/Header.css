@@ -11,7 +11,6 @@
   align-items: center;
   padding: 5px 10px;
   background-color: var(--main-bg-color);
-  border-bottom: 1px solid var(--main-text-color);
   z-index: 2;
   box-sizing: border-box;
 }
