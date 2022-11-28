@@ -26,18 +26,16 @@
 }
 
 .order-page__button {
-  border: 2px solid var(--main-text-color);
-  background-color: var(--main-bg-color);
+  background-color: var(--main-text-color);
   border-radius: 4px;
-  color: var(--main-text-color);
+  color: var(--main-bg-color);
   font-size: 12px;
-  padding: 6px 18px;
+  padding: 7px 19px;
   align-self: start;
-  background: none;
+  border: none;
 }
 
 .order-page__button_type_warning {
-  border: 2px solid var(--main-bg-color);
   /* background: linear-gradient(45deg, black, red); */
   animation: pulse 1.3s linear infinite;
   color: var(--main-bg-color);
@@ -73,13 +71,11 @@
 
 .order-page__addRoomButton {
   margin-top: 5px;
-  border: 2px solid var(--main-text-color);
   background-color: var(--main-text-color);
   border-radius: 5px;
-  padding: 10px 20px;
-  color: var(--main-text-color);
+  padding: 11px 21px;
+  color: var(--main-bg-color);
   font-size: 13px;
-  background: none;
 }
 
 .rooms {

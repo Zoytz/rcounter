@@ -43,16 +43,14 @@
 .order__button {
   margin-top: 5px;
   text-align: center;
-  border: 2px solid var(--main-text-color);
-  background-color: var(--main-bg-color);
-  color: var(--main-text-color);
+  background-color: var(--main-text-color);
+  color: var(--main-bg-color);
   font-size: 13px;
   border-radius: 5px;
   width: 45%;
   padding-top: 6px;
   padding-bottom: 6px;
   text-decoration: none;
-  background: none;
 }
 
 .order__link {
