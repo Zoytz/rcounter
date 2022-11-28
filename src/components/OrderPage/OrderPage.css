@@ -1,3 +1,15 @@
+@keyframes pulse {
+  0% {
+    background-color: red;
+  }
+  50% {
+    background-color: rgb(255, 177, 32);
+  }
+  100% {
+    background-color: red;
+  }
+}
+
 .order-page {
   display: flex;
   flex-direction: column;
@@ -26,7 +38,9 @@
 
 .order-page__button_type_warning {
   border: 2px solid var(--main-bg-color);
-  background: linear-gradient(45deg, black, red);
+  /* background: linear-gradient(45deg, black, red); */
+  animation: pulse 1.3s linear infinite;
+  color: var(--main-bg-color);
 }
 
 .order-page__text {

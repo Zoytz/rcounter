@@ -8,6 +8,18 @@
   }
 }
 
+@keyframes pulse {
+  0% {
+    background-color: red;
+  }
+  50% {
+    background-color: rgb(255, 177, 32);
+  }
+  100% {
+    background-color: red;
+  }
+}
+
 .input__container {
   margin-top: 5px;
   padding: 3px;
@@ -43,8 +55,8 @@
   width: 200%;
   height: 100%;
   background-size: 50% 100%;
-  animation: slidein 1s linear infinite;
-  background: linear-gradient(115deg, red, orange, red);
+  animation: pulse 1.5s linear infinite;
+  /* background: linear-gradient(115deg, red, orange, red); */
 }
 
 .form-input {
