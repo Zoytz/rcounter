@@ -6,12 +6,12 @@ import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 import { useNavigate } from 'react-router-dom';
 
 export type OrderType = {
-  city?: string
+  city: string
   street?: string
-  houseNumber?: number
+  houseNumber: number
   apartmentNumber?: number
-  customer?: string
-  customerTel?: number
+  customer: string
+  customerTel: number
   id: number
 }
 

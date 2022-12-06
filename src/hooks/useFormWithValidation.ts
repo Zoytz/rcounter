@@ -19,12 +19,14 @@ export function useFormWithValidation ():useFormWithValidationTypes {
   const [isFormValid, setIsFormValid] = useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
-    const input: any = e.target;
+    const input: EventTarget & HTMLInputElement | HTMLSelectElement = e.target;
     const name: string = input.name;
     const value: string = input.value;
     setValues((values) => ({...values, [name]: value}));
     setErrors((errors) => ({...errors, [name]: input.validationMessage}));
-    setIsFormValid(input.closest('form').checkValidity());
+    if (input.closest('form')) {
+      setIsFormValid(input.closest('form')!.checkValidity());
+    }
   }
 
   const resetForm = useCallback((

@@ -47,6 +47,7 @@ const OrderPage: FC<PropsType> = ({ orders, handleDeleteOrder, rooms, handleDele
     navigate(`/order-edit/${orderId}`)
   }
 
+  const customerTel = String(currentOrder.customerTel);
 
   return (
     <div className="order-page">
@@ -60,7 +61,10 @@ const OrderPage: FC<PropsType> = ({ orders, handleDeleteOrder, rooms, handleDele
       <p className="order-page__text">Улица: <span className="order-page__span">{currentOrder?.street}</span></p>
       <p className="order-page__text">Дом/квартира: <span className="order-page__span">{`д.${currentOrder?.houseNumber}, кв.${currentOrder?.apartmentNumber}`}</span></p>
       <p className="order-page__text">Заказчик: <span className="order-page__span">{currentOrder?.customer}</span></p>
-      <p className="order-page__text">Номер телефона: <a href={`tel: ${currentOrder?.customerTel}`} className="order-page__link page__link">{currentOrder?.customerTel}</a></p>
+      <p className="order-page__text">Номер телефона: <a href={`tel: ${currentOrder?.customerTel}`} className="order-page__link page__link">
+      {customerTel.length === 11 ? `${customerTel[0]}(${customerTel.slice(1, 4)})${customerTel.slice(4, 7)}-${customerTel.slice(7, 9)}-${customerTel.slice(9, 11)}` : currentOrder.customerTel}
+        {/* {currentOrder?.customerTel} */}
+        </a></p>
       <p className="order-page__text">Общая сумма: <span className="order-page__span">
         {orderCash.toFixed(0)} руб.</span></p>
       {/* <h2 className="order-page__title">Помещения и услуги:</h2> */}

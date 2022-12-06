@@ -59,6 +59,7 @@
 
 .order__subtitle-link {
   color: var(--secondary-text-color);
+  margin-left: 5px;
 }
 
 @media screen and (min-width: 374px) {
