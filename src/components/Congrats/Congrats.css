@@ -11,8 +11,6 @@
 }
 
 .congrats__container {
-  width: 100vw;
-  height: 100vh;
   position: absolute;
   top: 0;
   left: 0;
@@ -47,7 +45,6 @@
   padding: 0;
   width: 30px;
   border: none;
-  background-color: var(--main-bg-color);
   height: 30px;
   background-repeat: no-repeat;
   background-position: center;
@@ -55,6 +52,7 @@
   background-image: url(../../images/close.png);
   color: var(--main-text-color);
   text-align: center;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .congrats__title {
