@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/rcounter/static/css/main.ea11fcd9.css",
-    "main.js": "/rcounter/static/js/main.a17e8f6f.js",
-    "static/media/firstGif.gif": "/rcounter/static/media/firstGif.829b60198aa22f1641d2.gif",
+    "main.css": "/rcounter/static/css/main.4a254ff1.css",
+    "main.js": "/rcounter/static/js/main.af6284d3.js",
+    "static/media/salut.gif": "/rcounter/static/media/salut.24cd0ba096cd861afd2c.gif",
     "static/media/arial-black.woff": "/rcounter/static/media/arial-black.3fe05a6b3bd9a81cc2cc.woff",
     "static/media/arial-black.woff2": "/rcounter/static/media/arial-black.41ff21d58697269bd4c7.woff2",
     "index.html": "/rcounter/index.html",
-    "main.ea11fcd9.css.map": "/rcounter/static/css/main.ea11fcd9.css.map",
-    "main.a17e8f6f.js.map": "/rcounter/static/js/main.a17e8f6f.js.map"
+    "main.4a254ff1.css.map": "/rcounter/static/css/main.4a254ff1.css.map",
+    "main.af6284d3.js.map": "/rcounter/static/js/main.af6284d3.js.map"
   },
   "entrypoints": [
-    "static/css/main.ea11fcd9.css",
-    "static/js/main.a17e8f6f.js"
+    "static/css/main.4a254ff1.css",
+    "static/js/main.af6284d3.js"
   ]
 }
