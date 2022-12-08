@@ -2,6 +2,9 @@
   0% {
     opacity: 0;
   }
+  75% {
+    opacity: 0;
+  }
   100% {
     opacity: 1;
   }
@@ -58,7 +61,6 @@
   margin: 0;
   color: var(--main-text-color);
   text-align: center;
-  transition: opacity .3s linear;
   animation: appear 1s forwards;
 }
 
@@ -67,8 +69,7 @@
   margin-top: 20px;
   color: var(--main-text-color);
   text-align: center;
-  transition: opacity .3s linear;
-  animation: appear 3s forwards;
+  animation: appear 2s forwards;
 }
 
 .congrats__text {
@@ -76,11 +77,31 @@
   margin-top: 20px;
   color: var(--main-text-color);
   text-align: center;
-  transition: opacity .3s linear;
-  animation: appear 5s forwards;
+  opacity: 0;
+}
+
+.congrats__text_type_first {
+  animation: appear 3s forwards;
+}
+
+.congrats__text_type_second {
+  animation: appear 7s forwards;
+}
+
+.congrats__text_type_third {
+  animation: appear 13s forwards;
 }
 
 .congrats__text_type_ps {
   color: var(--secondary-text-color);
   font-size: 12px;
+  animation: appear 27s forwards;
+}
+
+.congrats__congratulations {
+  margin: 0;
+  margin-top: 20px;
+  color: var(--main-text-color);
+  text-align: center;
+  animation: appear 25s forwards;
 }
