@@ -22,7 +22,6 @@ function App() {
   const [rooms, setRooms] = React.useState<Array<RoomType>>([]);
   const [roomsServices, setRoomsServices] = React.useState<Array<RoomServiceType>>([]);
   const [isMenuOpen, setIsMenuOpen] = React.useState<boolean>(false);
-  const [isCongratsOpen, setIsCongratsOpen] = React.useState<boolean>(true);
 
   React.useEffect(() => {
     // const servicesFromLS: Array<ServiceType> = JSON.parse(localStorage.getItem('services')!);
@@ -231,14 +230,9 @@ function App() {
     localStorage.setItem('orders', JSON.stringify(updatedOrdersArr));
   }
 
-  const handleCloseCongrats = () => {
-    setIsCongratsOpen(false);
-  }
-
   return (
     <>
       <Modal onClose={handleClosePopup} isMenuOpen={isMenuOpen} handleClosePopup={handleClosePopup} />
-      <Congrats isCongratsOpen={isCongratsOpen} handleCloseCongrats={handleCloseCongrats} />
       <div className='page'>
         {/* <div className="bg-container"></div> */}
         <Header handleOpenMenu={handleOpenMenu} />
