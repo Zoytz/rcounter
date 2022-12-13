@@ -13,7 +13,6 @@ import Header from '../Header/Header';
 import Modal from '../Modal/Modal';
 import RoomEditForm from '../RoomEditForm/RoomEditForm';
 import OrdersEditForm from '../OrdersEditForm/OrdersEditForm';
-import Congrats from '../Congrats/Congrats';
 
 function App() {
 
