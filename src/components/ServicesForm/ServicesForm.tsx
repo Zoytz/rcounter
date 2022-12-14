@@ -41,7 +41,7 @@ const ServicesForm: FC<PropsType> = ({ handleServicesFormSubmit }) => {
       <FormInput required={true} onChange={handleChange} value={values.servicePrice} name='servicePrice' type="number" label='Стоимость услуги за ед.:' error={errors.servicePrice} />
       <label className='services__label'>
         Расчет из:
-        <select name="dependence" className='services__select' onChange={handleChange} value={values.dependence} required>
+        <select name="dependence" className='services__select' onChange={handleChange} value={values.dependence}>
           <option className='services__option' value=''>От чего зависит</option>
           <option className='services__option' value="wallS">Площадь стен</option>
           <option className='services__option' value="ceilingS">Площадь потолка</option>

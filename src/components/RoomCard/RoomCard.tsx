@@ -47,7 +47,8 @@ const RoomCard: FC<PropsType> = React.memo(({ currentRoom, handleDeleteRoom, ser
         serviceCash = currentRoom.roomFloorP * userService.price;
         break;
       default:
-        alert('Нужно запомнить, что Вы сделали до появления этого окна и рассказать об этом разработчику')
+        serviceCash = userService.price;
+        break;
     }
 
     serviceOfThisRoom.cash = serviceCash;
